@@ -1,0 +1,281 @@
+{
+  "slug": "bing-e-robos-no-log",
+  "num": 5,
+  "menu": "Bing and log",
+  "titulo": "Bing matters twice; the AI bots show up in the server log",
+  "titulo_curto": "Bing and bots in the log",
+  "minutos": 18,
+  "lead": "Bing feeds Copilot and has the only official citations dashboard; and one study found a good share of ChatGPT's citations among the top Bing results. Telling Bing costs little. On the other side, the server log tells you who really reads the site: which AI bots, for what purpose, and which ones are fake.",
+  "objetivo": "check the site in Bing with IndexNow and read in the log which AI bots really visit, separated by purpose.",
+  "competencias": [
+    "avisar-bing-indexnow",
+    "ler-log-de-robos",
+    "separar-robo-falso"
+  ],
+  "aprende": [
+    {
+      "t": "The two reasons to care about Bing (and what is a study, not a fact)"
+    },
+    {
+      "t": "Notify IndexNow only with URLs that return 200"
+    },
+    {
+      "t": "Read the log by purpose: search, user action, training"
+    },
+    {
+      "t": "Spot fake bots and CDN blocks in the log"
+    }
+  ],
+  "hero_alt": "Infrastructure tech looks at a laptop resting on a cart, in a server room.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Who finds you, who reads you, who cites you",
+      "sub": "Click each block.",
+      "nos": [
+        {
+          "icone": "megafone",
+          "titulo": "IndexNow + Bing",
+          "sub": "notify",
+          "detalhe": "IndexNow tells the participating search engines (Bing among them) that a URL is new or has changed. Google does not participate. Only notify URLs that return 200."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Bing twice",
+          "sub": "Copilot + index",
+          "forte": true,
+          "detalhe": "1) Bing feeds Copilot and shows the citations in AI Performance (lesson 2). 2) A study by Seer (about 100 questions, 500+ citations) found 87% of ChatGPT's citations in Bing's top 20, versus 56% in Google. It is a small study, not a statement from OpenAI."
+        },
+        {
+          "icone": "pasta",
+          "titulo": "Server log",
+          "sub": "who asked for the page",
+          "detalhe": "Each line shows the IP, path, response and User-Agent. It is the only source that shows which AI bots reached your site. It shows requests, not usage: for citations, look at Bing."
+        },
+        {
+          "icone": "robo",
+          "titulo": "By purpose",
+          "sub": "search · user · training",
+          "itens": [
+            {
+              "icone": "lupa",
+              "t": "search: OAI-SearchBot, Claude-SearchBot, PerplexityBot"
+            },
+            {
+              "icone": "usuario",
+              "t": "user action: ChatGPT-User, Claude-User, Perplexity-User"
+            },
+            {
+              "icone": "cerebro",
+              "t": "training: GPTBot, ClaudeBot"
+            }
+          ],
+          "detalhe": "Group the hits by the bot's purpose. Google-Extended does not show up in the log: it is only a robots.txt token; the one that crawls is Googlebot."
+        },
+        {
+          "icone": "escudo",
+          "titulo": "Fakes and blocks",
+          "sub": "check the IP",
+          "detalhe": "Anyone can write \"GPTBot\" in the User-Agent. Check the IP against the official lists the companies publish. And a 403 for an AI bot is usually a CDN block, not robots.txt."
+        }
+      ],
+      "legenda": "Notify Bing, then check the log to see who really came."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "In practice, in four steps",
+      "sub": "Tap each step.",
+      "passos": [
+        {
+          "titulo": "Sitemap in Bing",
+          "sub": "Webmaster Tools",
+          "texto": [
+            "Check in Bing Webmaster that the sitemap was read successfully (course 1, lesson 3). Without this, neither AI Performance nor IndexNow pays off."
+          ]
+        },
+        {
+          "titulo": "IndexNow",
+          "sub": "public key + notice",
+          "texto": [
+            "Publish the key in a .txt file at the site root and notify the new URLs after each publication. The method's script checks for the 200 before notifying.",
+            "At INEMA: 109 URLs notified with a 202 response on 09/24/2026 and 90 URLs with 200 on 10/02/2026."
+          ]
+        },
+        {
+          "titulo": "Get the log",
+          "sub": "read-only",
+          "texto": [
+            "On the server (nginx or Apache), copy the access log to your computer. Behind a CDN, use the CDN's log: the server's log only sees what got past it.",
+            "A person's IP is personal data (LGPD): before showing it to anyone, keep only the bot lines."
+          ]
+        },
+        {
+          "titulo": "Read by purpose",
+          "sub": "botlog",
+          "texto": [
+            "Run botlog (inemaseo-sistemas, MIT) or filter by hand on User-Agent. Look at three things: which purpose shows up, how many fakes there are, and whether any search bot got a 403."
+          ],
+          "exemplo": {
+            "rot": "Common reading",
+            "texto": "Only training bots in the log and no search bots: the site may be outside the index of the search AIs. Check robots.txt and the CDN (course 1, lesson 6)."
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "IndexNow and botlog",
+      "sub": "The first block is from the inemaSEO method (model only: it needs your key). The second reads the log on your computer; detailed teaching in course 7.",
+      "blocos": [
+        {
+          "rot": "avisar_buscadores.sh (inemaseo-metodo)",
+          "icone": "terminal",
+          "conteudo": "# urls.txt: one URL per line, all on the same host\n# the IndexNow key is published at https://seusite.com/<chave>.txt\nINDEXNOW_KEY=<chave> tools/avisar_buscadores.sh urls.txt\n# checks that each URL returns 200 before notifying; stops if any does not return 200"
+        },
+        {
+          "rot": "botlog (inemaseo-sistemas)",
+          "icone": "terminal",
+          "conteudo": "git clone https://github.com/inematds/inemaseo-sistemas && cd inemaseo-sistemas/ferramentas/botlog\n# copy the server log (read-only)\nssh usuario@SEU_SERVIDOR 'cd /var/log/nginx; zcat -f access.log.*.gz; cat access.log.1 access.log' > /tmp/site.log\n# report by purpose, with the IP checked against the official lists\npython3 botlog.py analisar /tmp/site.log --sitemap https://seusite.com/sitemap.xml --saida saida/site\n# LGPD: before sharing, keep only the bot lines with an official IP\npython3 botlog.py filtrar /tmp/site.log --saida /tmp/so-robos.log"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Captured output (10/19/2026)",
+            "html": "<p>botlog on the real log of desenho.inema.pro (10/05 to 10/19/2026), already filtered to only bots with an official IP:</p><pre>8 linhas, 8 de robô (treino 6, busca 2); falsos 0\n\nrobo           finalidade  acessos  paginas  robots_txt  4xx/5xx\nGPTBot         treino      4        2        0           0\nClaudeBot      treino      2        2        1           0\nOAI-SearchBot  busca       2        1        2           1</pre>"
+          },
+          {
+            "rot": "Assembled sample",
+            "html": "<p>In the repository's assembled sample (documentation IPs, official User-Agents), the report flags:</p><ul><li><b>4 fakes</b>: GPTBot, Googlebot and PerplexityBot coming from an IP outside the official list.</li><li>A <b>403 for ClaudeBot</b>, which simulates a CDN block.</li><li>A sitemap page that <b>no bot read</b>.</li></ul>"
+          },
+          {
+            "rot": "Honest limit",
+            "html": "<ul><li>The log shows a request, not a citation.</li><li>Behind a CDN, the IP may be the CDN's: use its log.</li><li>An old IP list creates false \"fakes\": update it.</li></ul>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: notify and check",
+      "sub": "No access to the log? Do E2 with the example from the repository.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · IndexNow and Bing",
+          "min": "25 min",
+          "texto": "Check the sitemap in Bing Webmaster, publish the IndexNow key, and notify 3 new or changed URLs that return 200.",
+          "pronto": "Bing shows the sitemap with a success status and the IndexNow notification returned 200 or 202."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Bots by purpose",
+          "min": "30 min",
+          "texto": "Run botlog on your site's log (or on the REAL example in the repository) and note the requests by purpose, the fakes, and the 403s for AI bots.",
+          "pronto": "a note with the count by purpose (search, user action, training), the number of fakes, and the list of 403s (or \"none\")."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "\"ChatGPT uses the Bing index.\" How do you say this honestly?",
+          "opcoes": [
+            "It is a fact documented by OpenAI.",
+            "A Seer study found 87% of citations in the Bing top 20; it is a small study, not a statement from OpenAI.",
+            "It is false.",
+            "It only applies to Copilot."
+          ],
+          "certa": 1,
+          "explica": "A hint from a study, with a small sample. A good reason to notify Bing, not a promise about ChatGPT.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "The log shows 30 requests from \"GPTBot\" coming from an IP outside OpenAI's list. What are they?",
+          "opcoes": [
+            "OpenAI training.",
+            "A fake bot: someone using the name in the User-Agent.",
+            "ChatGPT search.",
+            "Server error."
+          ],
+          "certa": 1,
+          "explica": "Anyone can write a User-Agent. Without the IP on the official list, do not count it as an OpenAI bot.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "OAI-SearchBot gets a 403 in the log, but robots.txt allows it. Where do you look?",
+          "opcoes": [
+            "In the sitemap.",
+            "In the CDN or the firewall: that is what really blocks.",
+            "In llms.txt.",
+            "In Search Console."
+          ],
+          "certa": 1,
+          "explica": "robots.txt asks; the CDN enforces. A 403 for an AI bot is usually a CDN rule.",
+          "ref": "codigo"
+        },
+        {
+          "p": "Why does searching for Google-Extended in the log not work?",
+          "opcoes": [
+            "Because it uses a secret IP.",
+            "Because it is only a robots.txt token; the one that crawls is Googlebot.",
+            "Because it no longer exists.",
+            "Because it only shows up in Bing."
+          ],
+          "certa": 1,
+          "explica": "Google-Extended controls use for training Gemini, with no bot of its own. It does not affect Google Search.",
+          "ref": "diagrama"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "Bing",
+          "texto": "Notify with IndexNow only URLs that return 200; Bing feeds Copilot and the only citations dashboard."
+        },
+        {
+          "t": "Log",
+          "texto": "Read by purpose, check the IP, and look for 403s on AI bots."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "ChatGPT–Bing is a hint from a Seer study, not a statement from OpenAI. A log shows requests, not citations."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "IndexNow (English)",
+          "href": "https://www.indexnow.org/",
+          "icone": "megafone"
+        },
+        {
+          "t": "Seer Interactive: ChatGPT citations and Bing (English)",
+          "href": "https://www.seerinteractive.com/insights/87-percent-of-searchgpt-citations-match-bings-top-results",
+          "icone": "grafico"
+        },
+        {
+          "t": "OpenAI: bots and IP ranges (English)",
+          "href": "https://platform.openai.com/docs/bots",
+          "icone": "robo"
+        },
+        {
+          "t": "inemaseo-sistemas: botlog (MIT)",
+          "href": "https://github.com/inematds/inemaseo-sistemas",
+          "icone": "git"
+        }
+      ]
+    }
+  ]
+}

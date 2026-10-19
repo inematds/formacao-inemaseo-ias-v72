@@ -1,0 +1,123 @@
+{
+  "slug": "rubrica-readiness",
+  "num": 6,
+  "menu": "Rubrica",
+  "titulo": "Rubrica de prontidão para IA e as ressalvas dela",
+  "titulo_curto": "Rubrica de prontidão",
+  "minutos": 17,
+  "lead": "Uma nota de prontidão para IA ajuda a achar o que está quebrado, desde que você saiba como ela é calculada. Nenhuma nota é oficial: cada scanner escolhe critérios e pesos. Aqui você compara duas rubricas abertas do INEMA, lê o que mais pesa e aprende o que a nota não prova.",
+  "objetivo": "rodar uma nota de prontidão para IA, ler os critérios que mais pesam e saber o que a nota não prova.",
+  "competencias": ["ler-rubrica-com-pesos", "priorizar-correcao-por-peso", "reconhecer-limites-de-nota"],
+  "aprende": [
+    {"t": "Como o WebMCP Readiness e o agente-ready calculam a nota"},
+    {"t": "Os critérios que mais pesam: acesso dos robôs, conteúdo, entidade"},
+    {"t": "As ressalvas: peso do WebMCP, perguntas e respostas, amostra pequena"},
+    {"t": "Corrigir o que pesa e rodar de novo"}
+  ],
+  "hero_alt": "Inspetor com prancheta confere a entrada de um prédio comercial, com rampa e porta de vidro.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Como uma nota nasce",
+      "sub": "Clique em cada bloco.",
+      "volta": "corrigir e rodar de novo",
+      "nos": [
+        {"icone": "lupa", "titulo": "Site", "sub": "o HTML entregue",
+         "detalhe": "Os dois scanners leem o que o servidor entrega: robots.txt, sitemap, a home e algumas páginas. O agente-ready lê como um robô que não roda JavaScript."},
+        {"icone": "lista", "titulo": "Critérios com peso", "sub": "decisão editorial", "forte": true,
+         "detalhe": "Cada critério tem um peso. No agente-ready (v1.0.0, 19/10/2026) os pesos são públicos num arquivo: acesso dos robôs 30, conteúdo extraível 26, descoberta 18, entidade 14, WebMCP 8, formulários 4. llms.txt pesa só 2."},
+        {"icone": "grafico", "titulo": "Nota", "sub": "0 a 100",
+         "detalhe": "Pontos ganhos sobre os pesos que se aplicam ao site. Critério que não se aplica (site sem formulário, sem idiomas) sai da conta em vez de virar falha."},
+        {"icone": "check", "titulo": "Corrigir o que pesa", "sub": "maior peso primeiro",
+         "detalhe": "A lista de falhas ordenada por peso é o plano: um robô de busca barrado na CDN (12) vale mais que o llms.txt (2)."},
+        {"icone": "x", "titulo": "Ressalvas", "sub": "o que a nota não prova",
+         "detalhe": "Nota alta não é citação. Os pesos são escolha de quem fez a rubrica, e a amostra é de poucas páginas. Use para achar defeito, nunca como promessa ao cliente."}
+      ],
+      "legenda": "A nota serve para priorizar correção. Citação se mede nas aulas 2 e 3."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "As duas rubricas e as ressalvas",
+      "sub": "Clique em cada aba.",
+      "passos": [
+        {"titulo": "WebMCP Readiness", "sub": "4 blocos",
+         "texto": ["O scanner do INEMA soma quatro blocos: WebMCP 30%, SEO 30%, GEO 20% e AEO 20%. Cada achado vale passou, aviso ou falha; um achado só informativo vale 0,7.", "GEO olha entidade, conteúdo substancial (250+ palavras), autoria e data, fontes e HTML semântico. AEO olha perguntas nos títulos, respostas diretas, listas e tabelas."]},
+        {"titulo": "Ressalva 1", "sub": "peso do WebMCP",
+         "texto": ["No Readiness, um site sem WebMCP fica com nota geral baixa mesmo com SEO perfeito, porque o bloco pesa 30%. WebMCP é rascunho sem navegador estável (aula 7): leia esse bloco como preparação."]},
+        {"titulo": "Ressalva 2", "sub": "perguntas e respostas",
+         "texto": ["Os critérios de AEO premiam títulos em forma de pergunta e resposta curta logo depois. Isso é clareza para o leitor, não técnica de IA com fonte. E o rich result de FAQ deixou de aparecer no Google em 07/05/2026: marcação FAQPage não dá mais vitrine.", "Não crie perguntas artificiais só para pontuar."]},
+        {"titulo": "agente-ready", "sub": "pesos públicos",
+         "texto": ["Evolução aberta do Readiness: pesos num arquivo versionado, com o porquê e a fonte de cada critério; WebMCP pesa 8 de 100; llms.txt pesa 2.", "Limites: amostra de home + 4 páginas, teste de CDN só por User-Agent, WebMCP detectado só no código estático."]}
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Rodar e ler a nota",
+      "sub": "O agente-ready só lê páginas públicas, sem API (ensino detalhado no curso 7). O WebMCP Readiness (webmcp.inema.pro) abre a página num navegador descartável e aprofunda só a URL informada.",
+      "blocos": [
+        {"rot": "agente-ready (inemaseo-sistemas, MIT)", "icone": "terminal",
+         "conteudo": "git clone https://github.com/inematds/inemaseo-sistemas && cd inemaseo-sistemas/ferramentas/agente-ready\npython3 agente-ready.py https://seusite.com --saida saida/seusite\n# saída: relatorio.html, agente-ready.json e criterios.csv\n# os pesos ficam em pesos.json: discorde, mude e rode de novo"},
+        {"rot": "notas.md · registro", "icone": "lista",
+         "conteudo": "# Prontidão para IA — <seusite.com>\n| data | ferramenta e versão | nota | 3 falhas de maior peso | corrigido |\n|---|---|---|---|---|\n| dd/mm/aaaa | agente-ready 1.0.0 | <n> | <falha 1 (peso)>, <falha 2>, <falha 3> | <qual> |"}
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {"rot": "Notas reais (19/10/2026)", "html": "<p>agente-ready 1.0.0 nos sites do INEMA, home + 4 páginas:</p><pre>site                         nota  entidade  conteudo  descoberta  webmcp\ninema.club                   93    86        81        100         100\nnews.inema.pro               72    0         71        100         29\neventos.inema.pro            69    0         62        100         29\nguia REA (github.io)         54    0         62        17          29</pre>"},
+          {"rot": "Como ler", "html": "<ul><li><b>inema.club</b>: perde só pelo link de Sobre/Contato na home e por autoria e data parciais.</li><li><b>news</b> e <b>eventos</b>: entidade zerada (sem Organization/Person com @id na home); é a correção de maior peso.</li><li><b>guia REA</b>: sem sitemap, sem lastmod e sem canônico; a descoberta cai para 17.</li><li>Acesso dos robôs: 100 nos quatro.</li></ul>"},
+          {"rot": "O que a nota não diz", "html": "<p>Nenhuma dessas notas diz se o site é citado. O inema.club com 93 e a medição de julho com 0 de 52 citações neutras convivem: prontidão é condição, citação é resultado.</p>"}
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: a nota do seu site",
+      "sub": "Pode ser o seu site ou o de um cliente que autorizou.",
+      "exercicios": [
+        {"id": "e1", "titulo": "E1 · Nota e 3 falhas", "min": "20 min",
+         "texto": "Rode o agente-ready (ou o WebMCP Readiness) no site e anote a nota, a ferramenta com a versão e as 3 falhas de maior peso.",
+         "pronto": "notas.md tem a linha com data, ferramenta e versão, nota e as 3 falhas com o peso de cada uma."},
+        {"id": "e2", "titulo": "E2 · Uma correção medida", "min": "40 min", "dias": 2,
+         "texto": "Corrija a falha de maior peso que estiver ao seu alcance (por exemplo, a entidade na home), publique e rode de novo.",
+         "pronto": "notas.md tem a segunda linha com a nova nota e o critério corrigido marcado como ok."}
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {"p": "O site tem SEO impecável e nota geral baixa no WebMCP Readiness. Qual a explicação provável?",
+         "opcoes": ["O SEO está errado.", "O bloco WebMCP pesa 30% da nota e o site não tem WebMCP.", "O Google rebaixou o site.", "Falta llms.txt."],
+         "certa": 1, "explica": "É a ressalva principal dessa rubrica. Leia o bloco WebMCP como preparação, não como defeito de SEO.", "ref": "passos", "cert": true},
+        {"p": "No agente-ready, qual correção vem primeiro?",
+         "opcoes": ["Publicar llms.txt (peso 2).", "Liberar na CDN os robôs de busca de IA (peso 12).", "Trocar a cor do site.", "Adicionar mais perguntas nos títulos."],
+         "certa": 1, "explica": "A ordem segue o peso. Robô de busca barrado tira o site das respostas; llms.txt é opcional.", "ref": "diagrama"},
+        {"p": "O inema.club tem nota 93. O que isso prova sobre citação nas IAs?",
+         "opcoes": ["Que ele é citado em 93% das respostas.", "Nada: prontidão é condição; citação se mede nos painéis e na bateria.", "Que ele está no top 10 do Google.", "Que o ChatGPT lê o site todo dia."],
+         "certa": 1, "explica": "Nota de rubrica não mede resposta de IA. Por isso as aulas 2 e 3 existem.", "ref": "codigo"},
+        {"p": "A rubrica premia títulos em forma de pergunta. Como usar isso?",
+         "opcoes": ["Transformar todo título em pergunta.", "Usar pergunta quando é dúvida real do público, como clareza, sem criar perguntas só para pontuar.", "Ignorar títulos.", "Marcar tudo com FAQPage para ganhar vitrine."],
+         "certa": 1, "explica": "Pergunta real com resposta direta ajuda o leitor. E o rich result de FAQ acabou em 07/05/2026.", "ref": "passos"}
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para levar",
+      "itens": [
+        {"t": "Nota é rubrica", "texto": "Cada scanner escolhe critérios e pesos; prefira pesos públicos."},
+        {"t": "Priorize pelo peso", "texto": "Acesso dos robôs, conteúdo no HTML e entidade antes de detalhes."},
+        {"t": "Régua de 2026", "texto": "Nota alta não é citação. WebMCP e perguntas nos títulos são preparação e clareza, não fator de ranking."}
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir além",
+      "links": [
+        {"t": "WebMCP Readiness (scanner do INEMA)", "href": "https://webmcp.inema.pro/", "icone": "lupa"},
+        {"t": "inemaseo-sistemas: agente-ready e pesos.json (MIT)", "href": "https://github.com/inematds/inemaseo-sistemas", "icone": "git"},
+        {"t": "Google: criar conteúdo útil (inglês)", "href": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", "icone": "caneta"}
+      ]
+    }
+  ]
+}

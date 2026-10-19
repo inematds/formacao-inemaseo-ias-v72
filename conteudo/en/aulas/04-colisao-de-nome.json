@@ -1,0 +1,265 @@
+{
+  "slug": "colisao-de-nome",
+  "num": 4,
+  "menu": "Entity",
+  "titulo": "Name collision and outdated entity in the AIs",
+  "titulo_curto": "Name collision and entity",
+  "minutos": 18,
+  "lead": "Sometimes the AI does answer about you, but about the wrong you: another company with the same name, or your story from ten years ago. The brand questions in the battery show this. The fix is to make clear, in text and in structured data, who you are, and to give the AIs sourced cards they can cite.",
+  "objetivo": "diagnose name collision and outdated bio in the AIs and build the catalog of cards that fixes your entity.",
+  "competencias": [
+    "diagnosticar-colisao-de-nome",
+    "publicar-entidade-com-sameas",
+    "montar-catalogo-de-conhecimento"
+  ],
+  "aprende": [
+    {
+      "t": "Read the battery's brand answers as an identity diagnosis"
+    },
+    {
+      "t": "Disambiguation page and the full brand name"
+    },
+    {
+      "t": "Person and Organization with a fixed @id and sameAs"
+    },
+    {
+      "t": "The catalog of cards with source, status, and date"
+    }
+  ],
+  "hero_alt": "A mail carrier looks at a letter in hand in front of two identical mailboxes, unsure which one is the right one.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "From identity error to measured fix",
+      "sub": "Click each block.",
+      "volta": "re-measure the brand questions the following month",
+      "nos": [
+        {
+          "icone": "chat",
+          "titulo": "Brand question",
+          "sub": "P05–P08 of the battery",
+          "detalhe": "\"What is [brand]?\", \"who is [founder]?\". They don't measure discovery; they measure whether the AI knows who you are."
+        },
+        {
+          "icone": "x",
+          "titulo": "Wrong answer",
+          "sub": "name collision or outdated bio",
+          "itens": [
+            {
+              "icone": "camadas",
+              "t": "name collision: another owner of the same name"
+            },
+            {
+              "icone": "relogio",
+              "t": "outdated bio"
+            }
+          ],
+          "detalhe": "Name collision: the short name belongs to someone with more authority (a public agency, an old brand). Outdated bio: the AI repeats the career path found in old sources and ignores the current one."
+        },
+        {
+          "icone": "usuario",
+          "titulo": "Clear entity",
+          "sub": "text + structured data",
+          "forte": true,
+          "detalhe": "Full brand name always the same; one page that says who you are and who you are not (disambiguation); a founder page linking the old career path to the current one; Person and Organization with a fixed @id and sameAs pointing to the official profiles."
+        },
+        {
+          "icone": "arquivo",
+          "titulo": "Catalog",
+          "sub": "sheets with a source",
+          "detalhe": "Short sheets by type (institutional, product, real frequently asked questions, cases), each with a 1-to-2-sentence summary, source, status and date. Anything without confirmation stays PENDENTE and does not go live."
+        }
+      ],
+      "legenda": "Diagnosis through the battery, fix on the site, check in the following month's battery."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Fix it in four steps",
+      "sub": "Tap each step.",
+      "passos": [
+        {
+          "titulo": "Read the brand answers",
+          "sub": "diagnosis",
+          "texto": [
+            "In the spreadsheet from lesson 3, filter the brand questions. Note: did the AI talk about you or about someone else? Is the description current? Which sources did it use?",
+            "The wrong sources show where the confusion comes from."
+          ],
+          "exemplo": {
+            "rot": "At INEMA (07/10/2026)",
+            "texto": "\"What is INEMA?\" got 4 out of 4 answers about INEMA-BA, the environmental agency. \"Who is Nei Maldaner?\" brought up the old bio of an IT businessman, with no AI. But \"What is INEMA.club?\" was answered correctly."
+          }
+        },
+        {
+          "titulo": "Full name and disambiguation",
+          "sub": "visible text",
+          "texto": [
+            "If the short name collides, always use the full name (at INEMA: INEMA.club) and publish a page that says who you are and who you should not be confused with.",
+            "On the founder page, link the old career path to the current one, in text: text is what the AI reads."
+          ]
+        },
+        {
+          "titulo": "Entity in JSON-LD",
+          "sub": "@id and sameAs",
+          "texto": [
+            "Person and Organization with a fixed @id on every page and sameAs pointing to the profiles you control (GitHub, YouTube, LinkedIn). Course 2, lesson 1, teaches this in detail.",
+            "The structured data has to match the visible text."
+          ]
+        },
+        {
+          "titulo": "Catalog of sheets",
+          "sub": "single source",
+          "texto": [
+            "Write short sheets based on the battery questions: these are questions with proven demand. Each sheet with a real source; without confirmation, mark it PENDENTE.",
+            "At INEMA, after the July round, 54 sheets were published at /conhecimento/."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Sheet and entity to copy",
+      "sub": "The sheet follows the catalog format of the AIV method (MIT). The JSON-LD goes in the head of every page.",
+      "blocos": [
+        {
+          "rot": "catalogo/institucional/quem-somos.md",
+          "icone": "arquivo",
+          "conteudo": "---\nslug: quem-somos\ntipo: institucional\ntitulo: O que é a <Marca Completa>\nresumo: <Marca Completa> é <o que é, para quem> desde <ano>. Não confundir com <homônimo>, que <o que o outro é>.\nstatus: revisado\nfonte: <URL ou documento que comprova>\nconfianca: alta\natualizado_em: dd/mm/aaaa\nrelacionados: [quem-e-fundador, servicos]\n---\n\n<Direct answer in 1 paragraph, with data only you have.>\n\n## PENDENTE\n- <what still needs confirming: does not go live>"
+        },
+        {
+          "rot": "JSON-LD · entity with @id and sameAs",
+          "icone": "terminal",
+          "conteudo": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\"@type\": \"Organization\", \"@id\": \"https://www.seusite.com/#organization\",\n     \"name\": \"<Marca Completa>\", \"url\": \"https://www.seusite.com/\",\n     \"founder\": {\"@id\": \"https://www.seusite.com/#fundador\"},\n     \"sameAs\": [\"https://github.com/<perfil>\", \"https://www.youtube.com/@<canal>\"]},\n    {\"@type\": \"Person\", \"@id\": \"https://www.seusite.com/#fundador\",\n     \"name\": \"<Nome Sobrenome>\", \"url\": \"https://www.seusite.com/quem-e-<nome>/\",\n     \"sameAs\": [\"https://www.linkedin.com/in/<perfil>\"]}\n  ]\n}\n</script>"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "At INEMA",
+            "html": "<p>Entity <code>Person #nei</code> and <code>Organization #organization</code> published on every page of the portal on 09/24/2026. Catalog of 54 sheets published at <code>/conhecimento/</code> after the July measurement.</p><p>The next round of the battery is what tells whether the identity changed in the AIs: without re-measuring, it's just hope.</p>"
+          },
+          {
+            "rot": "Catalog rules",
+            "html": "<ul><li>Never invent data: no source, PENDENTE.</li><li>A public sheet never goes out with PENDENTE.</li><li>An honest gap is better than an invented sheet: if the question asks for something you don't offer, the sheet says so.</li><li>Ask the owner early what they really sell and what is free: it changes the text of everything.</li></ul>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: your entity",
+      "sub": "Use the brand questions from your battery.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Identity diagnosis",
+          "min": "30 min",
+          "texto": "Ask \"what is [your brand]?\" and \"who is [founder or person in charge]?\" in 3 assistants. For each answer, note: did it talk about you or someone else, is it current, which sources did it use.",
+          "pronto": "a table with 6 answers (2 questions × 3 assistants), each marked \"correct / collision / outdated\" with the sources cited."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Five cards with sources",
+          "min": "45 min",
+          "texto": "Write 5 cards in the template format: who we are (with disambiguation, if there is a collision), the founder, and 3 answers to questions from your battery. Each one with a source and a date.",
+          "pronto": "5 .md files with every front matter field filled in, and no data without a source outside the PENDENTE section."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "\"What is [brand]?\" comes back describing a public agency with the same name. What is the first fix?",
+          "opcoes": [
+            "Change the company name.",
+            "Always use the brand's full name and publish a disambiguation page.",
+            "Buy ads.",
+            "Block the AI bots."
+          ],
+          "certa": 1,
+          "explica": "The short name may never be yours. A consistent full name and a page that says who you are (and who you are not) give the AIs something to cite.",
+          "ref": "passos",
+          "cert": true
+        },
+        {
+          "p": "What is sameAs for in JSON-LD?",
+          "opcoes": [
+            "To rank higher.",
+            "To link the entity to its official profiles (GitHub, YouTube, LinkedIn).",
+            "To hide old profiles.",
+            "To translate the site."
+          ],
+          "certa": 1,
+          "explica": "It links the same entity across pages and profiles. It has to match what is written on the site.",
+          "ref": "codigo"
+        },
+        {
+          "p": "A catalog card has a price the owner has not confirmed yet. What should you do?",
+          "opcoes": [
+            "Publish an estimated price.",
+            "Leave the price in the PENDENTE section, which does not go live.",
+            "Copy the competitor's price.",
+            "Ask the AI to suggest one."
+          ],
+          "certa": 1,
+          "explica": "Nothing without a source goes live. Made-up information in the catalog turns into a wrong AI answer about you.",
+          "ref": "codigo"
+        },
+        {
+          "p": "How do you know whether the fix worked?",
+          "opcoes": [
+            "By looking at the number of published pages.",
+            "By re-measuring the brand questions from the battery next month.",
+            "By asking ChatGPT once.",
+            "By the Performance report in Search Console."
+          ],
+          "certa": 1,
+          "explica": "Same questions, same assistants, 3 runs: only comparing with the previous round shows change.",
+          "ref": "diagrama"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "Diagnosis",
+          "texto": "The brand questions in the battery show name collision and an outdated bio."
+        },
+        {
+          "t": "Fix",
+          "texto": "Full name, disambiguation, Person and Organization with @id and sameAs, catalog with sources."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "There is no special schema for AI: structured data only helps when it matches the visible text."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "Google: Organization structured data (English)",
+          "href": "https://developers.google.com/search/docs/appearance/structured-data/organization",
+          "icone": "lupa"
+        },
+        {
+          "t": "Course 2 of the Program: Content (entity in detail)",
+          "href": "https://inematds.github.io/formacao-inemaseo-conteudo-v72/",
+          "icone": "caneta"
+        },
+        {
+          "t": "AIV 2026: knowledge catalog (guide)",
+          "href": "https://inematds.github.io/aiv2026/guia/",
+          "icone": "arquivo"
+        }
+      ]
+    }
+  ]
+}

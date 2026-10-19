@@ -1,0 +1,124 @@
+{
+  "slug": "webmcp-preparacao",
+  "num": 7,
+  "menu": "WebMCP",
+  "titulo": "Do encontrado ao usado: WebMCP como preparação",
+  "titulo_curto": "WebMCP como preparação",
+  "minutos": 19,
+  "lead": "SEO faz o site ser encontrado; o próximo passo é ele ser usado por um agente no navegador. O WebMCP propõe que a página ofereça ferramentas com nome, descrição e parâmetros. É um rascunho de comunidade do W3C, sem navegador estável: vale preparar uma página de teste, não reconstruir o site nem prometer ranking.",
+  "objetivo": "registrar uma ferramenta somente leitura com document.modelContext.registerTool() numa página de teste, como preparação.",
+  "competencias": ["explicar-webmcp-e-seu-estado", "registrar-ferramenta-somente-leitura", "proteger-com-permissions-policy"],
+  "aprende": [
+    {"t": "O que o WebMCP é e em que estado está (especificação de 16/10/2026)"},
+    {"t": "Os campos de uma ferramenta: nome, descrição, schema, execute"},
+    {"t": "Feature detection, cancelamento e caminho manual"},
+    {"t": "Onde o seu site ganharia uma ferramenta, e onde não"}
+  ],
+  "hero_alt": "Recepcionista arruma o balcão de um pequeno hotel, com campainha e tablet, pronto para atender.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Do encontrado ao usado",
+      "sub": "Clique em cada bloco.",
+      "nos": [
+        {"icone": "lupa", "titulo": "Encontrado", "sub": "SEO e as aulas 1 a 6",
+         "detalhe": "O agente precisa achar a página antes de usar. Sem rastreio, índice e conteúdo no HTML, nenhuma ferramenta adianta."},
+        {"icone": "robo", "titulo": "Agente no navegador", "sub": "lê a página",
+         "detalhe": "Hoje os agentes de navegador leem capturas de tela, o DOM e a árvore de acessibilidade, como diz a orientação do Google (web.dev). O WebMCP acrescenta um caminho direto: ferramentas que a própria página declara."},
+        {"icone": "chip", "titulo": "registerTool", "sub": "document.modelContext", "forte": true,
+         "itens": [{"icone": "titulo", "t": "name e description (obrigatórios)"}, {"icone": "lista", "t": "inputSchema (parâmetros)"}, {"icone": "play", "t": "execute (o que roda)"}, {"icone": "cadeado", "t": "annotations: readOnlyHint"}],
+         "detalhe": "Pela especificação de 16/10/2026, a API fica em document.modelContext, só em contexto seguro (HTTPS). registerTool recebe a ferramenta e, opcionalmente, um signal: abortar o signal tira a ferramenta do ar. Não existe uma função separada para remover."},
+        {"icone": "escudo", "titulo": "Limites", "sub": "permissão e confirmação",
+         "detalhe": "O acesso passa pela política de permissões \"tools\" (padrão: a própria origem). Página que não usa WebMCP pode desligar com Permissions-Policy: tools=(). Ação que muda algo (comprar, enviar, apagar) pede confirmação humana e validação no servidor."},
+        {"icone": "alvo", "titulo": "Estado real", "sub": "rascunho, sem navegador estável",
+         "detalhe": "Draft Community Group Report do W3C: o próprio documento diz que não é padrão W3C nem está na trilha de padrões. Há relatos de testes no Chrome e nenhuma data de versão estável; as fontes divergem. Preparação, não fator de ranking."}
+      ],
+      "legenda": "Primeiro ser encontrado; depois, com calma, ser usado."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Preparar sem exagero",
+      "sub": "Clique em cada passo.",
+      "passos": [
+        {"titulo": "Escolher uma jornada", "sub": "somente leitura",
+         "texto": ["Comece por algo que só consulta: horário, disponibilidade, preço de tabela, status de pedido público. Nada que compre, envie ou apague.", "Se o site não tem jornada útil para um agente, a decisão certa é não ter ferramenta."]},
+        {"titulo": "Descrever bem", "sub": "nome e descrição",
+         "texto": ["Nome em verbo e específico (consultar_horarios). Descrição dizendo o que faz, o que devolve e o limite (\"só leitura; não agenda\"). Cada parâmetro com tipo e descrição no inputSchema."]},
+        {"titulo": "Detectar e cair para o manual", "sub": "feature detection",
+         "texto": ["Registre só se o navegador expõe a API ('modelContext' in document). Se não expõe, a página continua igual para a pessoa, com o caminho manual visível.", "Guarde o AbortController: abortar tira a ferramenta."]},
+        {"titulo": "Nome novo, cursos antigos", "sub": "atenção",
+         "texto": ["A especificação mudou: a API agora fica em document.modelContext. Os cursos WebMCP antigos do INEMA e muitos guias usam o nome anterior, no objeto navigator, e uma forma declarativa em formulários que não aparece no texto da especificação de 16/10/2026 (a confirmar no explainer).", "Para aprofundar (segurança, schemas, agentes), siga a Formação WebMCP, com esse ajuste de nome em mente."]}
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Uma ferramenta somente leitura, para copiar",
+      "sub": "Página de teste servida em HTTPS. Troque os horários pelos seus.",
+      "blocos": [
+        {"rot": "horarios.html · página de teste", "icone": "terminal",
+         "conteudo": "<section id=\"horarios\">\n  <h1>Horário de atendimento</h1>\n  <p>Segunda a sexta, 8h às 18h. Sábado, 8h às 12h. Domingo, fechado.</p>\n</section>\n<p id=\"aviso-agente\" hidden>Este navegador não oferece ferramentas a agentes. As informações acima valem do mesmo jeito.</p>\n<script>\n  const horarios = { semana: \"08:00-18:00\", sabado: \"08:00-12:00\", domingo: \"fechado\" };\n  const controle = new AbortController(); // controle.abort() tira a ferramenta\n  if (\"modelContext\" in document) {\n    document.modelContext.registerTool({\n      name: \"consultar_horarios\",\n      title: \"Consultar horário de atendimento\",\n      description: \"Devolve o horário de atendimento da loja para o dia pedido. Só leitura: não agenda nada.\",\n      inputSchema: {\n        type: \"object\",\n        properties: {\n          dia: { type: \"string\", enum: [\"semana\", \"sabado\", \"domingo\"], description: \"Dia a consultar\" }\n        },\n        required: [\"dia\"]\n      },\n      annotations: { readOnlyHint: true },\n      async execute({ dia }) {\n        return { dia, horario: horarios[dia] };\n      }\n    }, { signal: controle.signal }).catch((erro) => console.warn(\"WebMCP:\", erro));\n  } else {\n    document.getElementById(\"aviso-agente\").hidden = false;\n  }\n</script>"},
+        {"rot": "Cabeçalho para páginas SEM WebMCP", "icone": "escudo",
+         "conteudo": "Permissions-Policy: tools=()"},
+        {"rot": "Conferir", "icone": "check",
+         "conteudo": "grep -c \"registerTool(\" horarios.html\n# 1\n# publicada: o agente-ready detecta a ferramenta no código estático\npython3 agente-ready.py https://seusite.com/teste/horarios.html --saida saida/teste"}
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {"rot": "No inema.club (19/10/2026)", "html": "<p>O agente-ready achou no inema.club <b>1 chamada registerTool()</b> em document.modelContext e a política <code>Permissions-Policy: tools=(self)</code>; o bloco WebMCP fechou em 100. Nos sites news e eventos, sem ferramenta, o bloco ficou em 29.</p><p>Isso mede preparação. Nenhuma IA promete citar ou ranquear melhor por causa disso.</p>"},
+          {"rot": "O que a especificação diz", "html": "<ul><li><code>registerTool(tool, options)</code> rejeita nome repetido, nome ou descrição vazios e schema inválido.</li><li><code>options.signal</code>: abortar tira a ferramenta.</li><li><code>annotations</code>: readOnlyHint, untrustedContentHint, consequentialHint.</li><li><code>Permissions-Policy: tools=()</code> desliga a API na página e nos frames.</li></ul>"}
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: a página de teste",
+      "sub": "Não mexa no site principal: use uma página de teste.",
+      "exercicios": [
+        {"id": "e1", "titulo": "E1 · Ferramenta somente leitura", "min": "40 min",
+         "texto": "Adapte o modelo para uma consulta real do seu negócio, publique numa página de teste em HTTPS e abra no navegador comum.",
+         "pronto": "a página abre sem erro no console, mostra o aviso do caminho manual quando o navegador não oferece a API, e o grep por registerTool( devolve 1."},
+        {"id": "e2", "titulo": "E2 · Onde sim, onde não", "min": "20 min",
+         "texto": "Liste 3 jornadas do seu site e decida para cada uma: ferramenta somente leitura, ação com confirmação humana ou nenhuma ferramenta. Escreva o motivo.",
+         "pronto": "um texto curto com 3 jornadas, a decisão e o motivo de cada uma, e quais páginas recebem Permissions-Policy: tools=()."}
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {"p": "Pela especificação de 16/10/2026, onde fica a API do WebMCP?",
+         "opcoes": ["Em window.webmcp.", "Em document.modelContext.", "No robots.txt.", "No llms.txt."],
+         "certa": 1, "explica": "document.modelContext, só em HTTPS. Os cursos antigos usam o nome anterior, no objeto navigator.", "ref": "diagrama", "cert": true},
+        {"p": "Como tirar do ar uma ferramenta registrada?",
+         "opcoes": ["Chamando uma função de remover.", "Abortando o AbortSignal passado em options.signal.", "Apagando o robots.txt.", "Recarregando o site do servidor."],
+         "certa": 1, "explica": "A especificação não tem função separada de remoção: quem tira é o signal.", "ref": "codigo"},
+        {"p": "Por que começar por uma ferramenta somente leitura?",
+         "opcoes": ["Porque é a única permitida.", "Porque não muda nada no mundo: o risco de um agente errar é baixo; ação que muda algo pede confirmação humana e validação no servidor.", "Porque ranqueia melhor.", "Porque dispensa HTTPS."],
+         "certa": 1, "explica": "Consulta primeiro, ação depois e com confirmação. readOnlyHint deixa isso explícito.", "ref": "passos"},
+        {"p": "Um cliente quer WebMCP para \"subir no Google\". O que responder?",
+         "opcoes": ["Que sobe em uma semana.", "Que é rascunho de comunidade do W3C, sem navegador estável: preparação para agentes, não fator de ranking.", "Que é obrigatório desde 2026.", "Que substitui o SEO."],
+         "certa": 1, "explica": "O próprio documento diz que não é padrão W3C. Vender como ranking é vender promessa.", "ref": "diagrama"}
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para levar",
+      "itens": [
+        {"t": "Ordem", "texto": "Primeiro ser encontrado (SEO), depois ser usado (ferramentas)."},
+        {"t": "Ferramenta", "texto": "document.modelContext.registerTool com nome, descrição, schema e execute; signal para tirar; HTTPS."},
+        {"t": "Régua de 2026", "texto": "WebMCP é rascunho de comunidade do W3C (16/10/2026), sem navegador estável: preparação, não ranking."}
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir além",
+      "links": [
+        {"t": "W3C WebML CG: especificação WebMCP, 16/10/2026 (inglês)", "href": "https://webmachinelearning.github.io/webmcp/", "icone": "arquivo"},
+        {"t": "Formação WebMCP do INEMA (aprofundamento; usa o nome anterior da API)", "href": "https://inematds.github.io/webmcp-1-formacao/", "icone": "camadas"},
+        {"t": "web.dev: sites amigáveis a agentes (inglês)", "href": "https://web.dev/articles/ai-agent-site-ux", "icone": "robo"}
+      ]
+    }
+  ]
+}

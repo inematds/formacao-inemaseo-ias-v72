@@ -1,0 +1,257 @@
+{
+  "slug": "paineis-oficiais",
+  "num": 2,
+  "menu": "Dashboards",
+  "titulo": "Official dashboards: the Search Console AI report and Bing's AI Performance",
+  "titulo_curto": "Official AI dashboards",
+  "minutos": 17,
+  "lead": "In 2026, the first official, free dashboards on AI appeared: the Search Console generative AI report and Bing's AI Performance, now with the Topics Portfolio. Each one measures something different, and none measures everything. Knowing what each number is keeps you from drawing the wrong conclusion.",
+  "objetivo": "open the Search Console AI report and Bing's AI Performance, and note what each one measures and what it doesn't.",
+  "competencias": [
+    "ler-relatorio-ia-search-console",
+    "ler-ai-performance-bing",
+    "montar-linha-de-base"
+  ],
+  "aprende": [
+    {
+      "t": "What the Search Console generative AI report shows (and what's missing)"
+    },
+    {
+      "t": "Citations, cited pages, and grounding queries in Bing"
+    },
+    {
+      "t": "What the Topics Portfolio is for (10/13/2026)"
+    },
+    {
+      "t": "Build the month's baseline in a spreadsheet"
+    }
+  ],
+  "hero_alt": "A person points with a pen at charts on a laptop screen, next to a notebook and a cup of coffee.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Three dashboards, three questions",
+      "sub": "Click each block.",
+      "nos": [
+        {
+          "icone": "lupa",
+          "titulo": "Search Console",
+          "sub": "generative AI report",
+          "detalhe": "Shows impressions in Google Search generative AI features (includes Discover). According to the help page, it was released to all sites on 08/31/2026. It measures impressions, not citations or clicks. AI Overviews and AI Mode also already count in the regular Performance report."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Bing AI Performance",
+          "sub": "citations",
+          "forte": true,
+          "detalhe": "Public preview since February 2026: total citations, pages cited per day, and the grounding queries (the phrases the AI used to look up the cited content). It covers Copilot, Bing's AI summaries, and select partners. The data is a sample and has no clicks. It's the only official \"was I cited\" dashboard."
+        },
+        {
+          "icone": "camadas",
+          "titulo": "Topics Portfolio",
+          "sub": "beta, 10/13/2026",
+          "detalhe": "Inside AI Performance, it groups grounding queries into topics and shows demand, competition, and opportunity queries. New and in beta: note the date when you use it."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Your spreadsheet",
+          "sub": "monthly baseline",
+          "detalhe": "The dashboards don't talk to each other. One row per month with AI impressions (Google), citations (Bing), cited pages, and grounding queries becomes your historical series. Traffic that arrives from the AIs lives in GA4 (course 3, lesson 7)."
+        }
+      ],
+      "legenda": "Google counts impressions, Bing counts citations, your spreadsheet joins the two with a date."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Open and note, in four steps",
+      "sub": "Click each step. You need the site verified in both dashboards (course 1, lesson 3).",
+      "passos": [
+        {
+          "titulo": "Search Console",
+          "sub": "AI impressions",
+          "texto": [
+            "Open the site's property and find the generative AI report. Note the total impressions for the last 28 days and the pages with the most impressions.",
+            "If little or nothing shows up, note \"no data yet\": that's a baseline too."
+          ]
+        },
+        {
+          "titulo": "Bing AI Performance",
+          "sub": "citations",
+          "texto": [
+            "In Bing Webmaster Tools, open AI Performance. Write down the total citations, the 5 most-cited pages, and 5 grounding queries.",
+            "Export the CSV: there is no API for this data (a third-party report says it is \"on the backlog, no timeline\")."
+          ]
+        },
+        {
+          "titulo": "Topics Portfolio",
+          "sub": "topics",
+          "texto": [
+            "If the beta already shows up for your site, write down the 3 topics with the most demand and the least competition. They become your content plan, along with course 2."
+          ]
+        },
+        {
+          "titulo": "Read with care",
+          "sub": "limits",
+          "texto": [
+            "An AI impression is not a click; Bing citations are a sample; neither one measures ChatGPT, Claude, or Gemini directly. For those, lesson 3 teaches the question battery."
+          ],
+          "exemplo": {
+            "rot": "Common mistake",
+            "texto": "Adding Google impressions and Bing citations into a single number. They are different measures: keep two columns."
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "The monthly spreadsheet and the cross-check with Google",
+      "sub": "The first block is the spreadsheet. The second is the bing-ia template, which cross-checks the Bing CSV with the Search Console history (detailed in course 7).",
+      "blocos": [
+        {
+          "rot": "linha-de-base-ia.csv",
+          "icone": "lista",
+          "conteudo": "mes;gsc_impressoes_ia_28d;bing_citacoes;bing_paginas_citadas;top5_paginas_bing;top5_grounding_queries;observacao\n2026-10;<n ou sem dado>;<n>;<n>;<url1|url2|...>;<consulta1|consulta2|...>;<o que mudou no site este mês>"
+        },
+        {
+          "rot": "bing-ia · template (inemaseo-sistemas, MIT)",
+          "icone": "terminal",
+          "conteudo": "git clone https://github.com/inematds/inemaseo-sistemas && cd inemaseo-sistemas/ferramentas/bing-ia\n# 1. import the CSVs exported from AI Performance (pages and grounding queries)\npython3 bing_ia.py importar ~/Downloads/ai-performance-*.csv --db dados/bing.sqlite\n# 2. cross-check with the Search Console history (gsc-historico)\npython3 bing_ia.py relatorio --db dados/bing.sqlite --gsc-db ../gsc-historico/dados/gsc.sqlite --site seusite.com --saida saida/seusite"
+        }
+      ],
+      "saida": {
+        "selo": "simulacao",
+        "abas": [
+          {
+            "rot": "What the report separates",
+            "html": "<p>bing-ia splits your pages into four groups:</p><ul><li><b>Cited by AI and with clicks on Google</b>: they work on both; keep them updated.</li><li><b>Cited, no clicks on Google</b>: the AI trusts them, Google doesn't send people; review the title and the target query.</li><li><b>With clicks on Google, never cited</b>: candidates for a direct answer, authorship, and a date.</li><li><b>Ideas</b>: grounding queries that never showed up in Search Console.</li></ul>"
+          },
+          {
+            "rot": "Note on the example",
+            "html": "<p>The example in the repository uses <b>fictitious</b> CSVs (made-up numbers, real URLs) to show the tool. Microsoft does not document the export columns: the names the tool recognizes are a guess to confirm with a real CSV.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: your baseline",
+      "sub": "It takes about 30 minutes if your site is already verified.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Baseline for the month",
+          "min": "20 min",
+          "texto": "Fill in the first row of the spreadsheet with the AI impressions from Search Console and the Bing citations. No data yet? Write \"sem dado\" and the date: in three months you will have something to compare against.",
+          "pronto": "linha-de-base-ia.csv has the row for the month with both columns filled in (a number or \"sem dado\") and the date."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Five grounding queries",
+          "min": "15 min",
+          "texto": "In AI Performance, write down 5 grounding queries and the page cited for each one. Mark which of those phrases also show up in your site's Search Console.",
+          "pronto": "a list with 5 grounding queries, the cited page, and \"shows up on Google: yes/no\" (or a note that Bing doesn't show citations yet)."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "What does the generative AI report in Search Console show?",
+          "opcoes": [
+            "Clicks coming from ChatGPT.",
+            "Impressions in generative AI features of Google Search.",
+            "Citations across all AIs.",
+            "Your site's position in AI Mode."
+          ],
+          "certa": 1,
+          "explica": "It is an impressions report. It does not measure citations or other AIs. The common mistake is reading an impression as a click.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "Which is the only official dashboard that shows AI citations?",
+          "opcoes": [
+            "Google Analytics 4.",
+            "Bing Webmaster Tools, AI Performance.",
+            "Search Console, Performance report.",
+            "The CDN dashboard."
+          ],
+          "certa": 1,
+          "explica": "AI Performance shows citations, cited pages, and grounding queries from Copilot and Bing summaries. They are a sample and have no clicks.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "What is a grounding query?",
+          "opcoes": [
+            "The keyword you picked.",
+            "The phrase the AI used to look up the content it ended up citing.",
+            "A branded query.",
+            "A type of schema."
+          ],
+          "certa": 1,
+          "explica": "It's the search the AI ran behind the answer. A list of grounding queries is a topic list with proven demand.",
+          "ref": "passos"
+        },
+        {
+          "p": "How do you combine Google and Bing in the monthly report?",
+          "opcoes": [
+            "Add impressions and citations into one total.",
+            "Keep separate columns, with the date, because they measure different things.",
+            "Use only the larger of the two.",
+            "Replace them with a number from a paid tool."
+          ],
+          "certa": 1,
+          "explica": "Impressions and citations don't add up. Two columns per month become a comparable historical series.",
+          "ref": "codigo"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "Google",
+          "texto": "Generative AI report: impressions, for all sites since 08/31/2026."
+        },
+        {
+          "t": "Bing",
+          "texto": "AI Performance: citations and grounding queries (sample, no clicks); Topics Portfolio in beta since 10/13/2026."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "These are the only official AI numbers. A paid tool gives a sample, not an official score."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "Search Console: generative AI report (help)",
+          "href": "https://support.google.com/webmasters/answer/16984139",
+          "icone": "lupa"
+        },
+        {
+          "t": "Bing: AI Performance in Webmaster Tools (in English)",
+          "href": "https://blogs.bing.com/webmaster/2026/02/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+          "icone": "grafico"
+        },
+        {
+          "t": "Bing: Topics Portfolio, beta (in English)",
+          "href": "https://blogs.bing.com/webmaster/2026/10/introducing-topics-portfolio-beta-in-ai-performance/",
+          "icone": "camadas"
+        },
+        {
+          "t": "inemaseo-sistemas: bing-ia and the other tools (MIT)",
+          "href": "https://github.com/inematds/inemaseo-sistemas",
+          "icone": "git"
+        }
+      ]
+    }
+  ]
+}

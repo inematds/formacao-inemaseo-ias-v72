@@ -1,0 +1,376 @@
+{
+  "slug": "comercio-e-loop",
+  "num": 8,
+  "menu": "Loop",
+  "titulo": "Comercio por agente y el loop mensual de medición",
+  "titulo_curto": "Comercio y loop mensual",
+  "minutos": 18,
+  "lead": "Los agentes ya llenan formularios y comparan productos leyendo la página como un lector de pantalla. Lo que ayuda es lo básico bien hecho: HTML semántico, etiquetas, datos de producto correctos. Y nada de eso vale sin rutina: un loop mensual con los paneles, la batería, el log y la nota, siempre con fecha.",
+  "objetivo": "dejar formularios y páginas de producto legibles para agentes y armar el loop mensual de medición en las IAs con fechas.",
+  "competencias": [
+    "preparar-formulario-para-agente",
+    "manter-dados-de-produto",
+    "rodar-loop-mensal-de-ia"
+  ],
+  "aprende": [
+    {
+      "t": "Lo que lee un agente de navegador: DOM, árbol de accesibilidad, captura de pantalla"
+    },
+    {
+      "t": "Formulario con etiqueta y autocomplete; botón de verdad"
+    },
+    {
+      "t": "Merchant Center y Perfil de Empresa; protocolos de comercio solo para acompañar"
+    },
+    {
+      "t": "El loop mensual y tu plan con fechas"
+    }
+  ],
+  "hero_alt": "La dueña de una tienda de artículos de cuero empaca un pedido en línea junto a la laptop.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Del sitio legible al loop del mes",
+      "sub": "Haz clic en cada bloque.",
+      "volta": "todos los meses, con fecha",
+      "nos": [
+        {
+          "icone": "robo",
+          "titulo": "Cómo lee el agente",
+          "sub": "DOM, accesibilidad, pantalla",
+          "detalhe": "Según la guía de Google (web.dev), los agentes de navegador leen el DOM, el árbol de accesibilidad (roles, nombres y estados de cada elemento) y capturas de pantalla. Lo que sirve a quien usa lector de pantalla sirve al agente."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Formulario y botones",
+          "sub": "semántico y con etiquetas",
+          "forte": true,
+          "detalhe": "Botón y enlace de verdad (elementos button y a), no cajas genéricas con clic. Cada campo con etiqueta conectada por el atributo for. Nada de capa transparente cubriendo lo que se puede pulsar; un diseño que no salte mientras carga."
+        },
+        {
+          "icone": "camadas",
+          "titulo": "Datos de producto y de lugar",
+          "sub": "Merchant Center, Perfil de Empresa",
+          "detalhe": "La guía de IA de Google pide tener al día Merchant Center y el Perfil de Empresa en Google para aparecer en respuestas con productos y lugares. Los protocolos de comercio por agente (el UCP, que Google cita como emergente) quedan para seguirlos de cerca, no para que la pequeña empresa los implemente ahora."
+        },
+        {
+          "icone": "calendario",
+          "titulo": "Loop mensual",
+          "sub": "medir, corregir, volver a medir",
+          "itens": [
+            {
+              "icone": "grafico",
+              "t": "paneles: Search Console y Bing (clase 2)"
+            },
+            {
+              "icone": "chat",
+              "t": "batería v1 a mano (clase 3)"
+            },
+            {
+              "icone": "usuario",
+              "t": "preguntas de marca (clase 4)"
+            },
+            {
+              "icone": "pasta",
+              "t": "log por finalidad (clase 5)"
+            },
+            {
+              "icone": "check",
+              "t": "nota de preparación (clase 6)"
+            }
+          ],
+          "detalhe": "Una vez al mes, en la misma semana: llena la planilla, corre la batería, lee el log, calcula la nota. Escribe una sola decisión. Si la tasa de aparición no se mueve en 3 meses, mira las fuentes que las IAs citan en tu lugar: ahí es donde tu autoridad necesita existir."
+        }
+      ],
+      "legenda": "Lo básico legible para agentes y una rutina con fecha valen más que cualquier atajo."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Cuatro ajustes que sirven a personas y a agentes",
+      "sub": "Haz clic en cada paso. Todos vienen de la guía de web.dev para sitios amigables con agentes.",
+      "passos": [
+        {
+          "titulo": "Elementos de verdad",
+          "sub": "semántica",
+          "texto": [
+            "Acción es botón, navegación es enlace. Si no puedes usar el elemento correcto, dale el rol (role) y el tabindex correctos.",
+            "Usa cursor de mano (cursor: pointer) en lo que se puede pulsar: es una señal fuerte de acción."
+          ]
+        },
+        {
+          "titulo": "Etiquetas conectadas",
+          "sub": "formularios",
+          "texto": [
+            "Todo campo con etiqueta visible conectada por el atributo for. Correo, nombre y teléfono con autocomplete: ayuda a quien llena el formulario y ayuda al agente a saber qué es cada campo."
+          ]
+        },
+        {
+          "titulo": "Nada escondido",
+          "sub": "pantalla estable",
+          "texto": [
+            "Sin capas transparentes sobre los botones; elementos de acción visibles y con tamaño mínimo. Un diseño que no cambia de lugar después de cargar: el agente que lee capturas de pantalla se pierde."
+          ]
+        },
+        {
+          "titulo": "Datos de producto",
+          "sub": "comercio",
+          "texto": [
+            "Feed de Merchant Center correcto, política de devoluciones clara y Perfil de Empresa actualizado. Sigue los protocolos de comercio por agente sin implementarlos: las fuentes todavía no coinciden sobre su estado."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Formulario legible y la ficha del loop",
+      "sub": "El formulario es un modelo; la ficha del loop es para copiar cada mes.",
+      "blocos": [
+        {
+          "rot": "formulario · etiquetas y autocomplete",
+          "icone": "terminal",
+          "conteudo": "<form action=\"/orcamento\" method=\"post\">\n  <label for=\"nome\">Nombre</label>\n  <input id=\"nome\" name=\"nome\" autocomplete=\"name\" required>\n\n  <label for=\"email\">Correo electrónico</label>\n  <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required>\n\n  <label for=\"telefone\">Teléfono</label>\n  <input id=\"telefone\" name=\"telefone\" type=\"tel\" autocomplete=\"tel\">\n\n  <button type=\"submit\">Pedir presupuesto</button>\n</form>"
+        },
+        {
+          "rot": "loop-ia-AAAA-MM.md",
+          "icone": "calendario",
+          "conteudo": "# Loop mensual de IA — <mes/año> (ejecutado el dd/mm/aaaa)\n\n1. Paneles: GSC impresiones de IA <n> | Bing citas <n> | páginas citadas <n>\n2. Batería v1: aparición en las neutras por asistente: ChatGPT <x%> | Gemini <x%> | Perplexity <x%> | Copilot <x%>\n   Fuentes citadas en mi lugar (top 5): <...>\n3. Marca: \"qué es [marca]\" correcto en <n de 3> asistentes; \"quién es [fundador]\" actual en <n de 3>\n4. Log: búsqueda <n> | acción del usuario <n> | entrenamiento <n> | falsos <n> | 403 para robot de IA: <sí/no>\n5. Nota de preparación: <n> (herramienta y versión)\n\nDecisión del mes (una sola): <...>\n¿Sin cambios hace 3 meses? Fuentes externas en las que trabajar: <...>"
+        }
+      ],
+      "saida": {
+        "selo": "simulacao",
+        "abas": [
+          {
+            "rot": "Qué no hacer",
+            "html": "<ul><li>Botón hecho con una caja genérica y clic en JavaScript, sin rol ni etiqueta.</li><li>Campo con la etiqueta solo como texto de ejemplo dentro (desaparece cuando la persona escribe).</li><li>Medir una vez y parar: sin el mes siguiente, no hay comparación.</li></ul>"
+          },
+          {
+            "rot": "Cuando la tasa no se mueve",
+            "html": "<p>El método AIV sugiere: después de 3 meses sin cambios en la batería, la palanca deja de ser el contenido de tu sitio y pasa a ser la presencia donde las IAs ya buscan (las fuentes que aparecen en tu lugar). Trátalo como una hipótesis por probar, con el loop midiendo.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Práctica: legible y con rutina",
+      "sub": "El E2 usa el generador al final de la clase.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Un formulario revisado",
+          "min": "30 min",
+          "texto": "Elige el formulario más importante del sitio (contacto, presupuesto, pedido). Revisa en las DevTools de Chrome el árbol de accesibilidad: ¿cada campo tiene nombre? ¿el botón es botón? Corrige lo que falte.",
+          "pronto": "todo campo del formulario aparece con nombre en el árbol de accesibilidad, el correo, el nombre y el teléfono tienen autocomplete y el envío es un botón."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · El loop programado",
+          "min": "20 min",
+          "texto": "Genera tu plan abajo, descarga el .ics y marca en el calendario el primer loop mensual. Copia la ficha del loop a la carpeta del proyecto.",
+          "pronto": "el calendario tiene la fecha del primer loop mensual y la ficha loop-ia del mes existe con la fecha completa."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Prueba lo que aprendiste",
+      "sub": "La explicación aparece después de tu respuesta.",
+      "perguntas": [
+        {
+          "p": "¿Qué usa un agente de navegador para entender un formulario?",
+          "opcoes": [
+            "Solo el robots.txt.",
+            "El DOM, el árbol de accesibilidad y capturas de pantalla.",
+            "El llms.txt.",
+            "El informe de Search Console."
+          ],
+          "certa": 1,
+          "explica": "Es lo que dice la guía de web.dev. Las etiquetas y los elementos semánticos aparecen en el árbol de accesibilidad.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "¿Qué hacer hoy con los protocolos de comercio por agente en una pequeña empresa?",
+          "opcoes": [
+            "Implementarlos todos ya.",
+            "Hacer seguimiento; por ahora vale tener un feed correcto en Merchant Center y el Perfil de Empresa actualizado.",
+            "Ignorar Merchant Center.",
+            "Cambiar el sitio por una aplicación."
+          ],
+          "certa": 1,
+          "explica": "Google menciona UCP como emergente, y las fuentes sobre los otros no coinciden. La ganancia segura son los datos de producto correctos.",
+          "ref": "passos"
+        },
+        {
+          "p": "La tasa de aparición en la batería se quedó estancada por 3 meses. ¿Siguiente paso?",
+          "opcoes": [
+            "Cambiar las preguntas de la batería.",
+            "Mirar las fuentes que las IAs citan en tu lugar y trabajar tu presencia en ellas, midiendo en el loop.",
+            "Dejar de medir.",
+            "Comprar menciones."
+          ],
+          "certa": 1,
+          "explica": "Las fuentes citadas en tu lugar muestran dónde necesita existir la autoridad. La mención comprada no es auténtica, y Google pide evitarla.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "¿Por qué el loop tiene fecha y una decisión por mes?",
+          "opcoes": [
+            "Para llenar informes.",
+            "Porque sin fecha no hay comparación, y una decisión por mes deja claro qué cambió entre una medición y otra.",
+            "Porque Google lo exige.",
+            "Para gastar menos."
+          ],
+          "certa": 1,
+          "explica": "Una medición sin fecha no se puede comparar; muchos cambios a la vez no dicen qué funcionó.",
+          "ref": "codigo"
+        }
+      ]
+    },
+    {
+      "tipo": "mapa",
+      "titulo": "El mapa del curso",
+      "sub": "Cuatro niveles y los ejercicios de cada uno. Haz clic en un ejercicio para ver el \"listo cuando\".",
+      "degraus": [
+        {
+          "aula": "aeo-geo-sem-mito",
+          "icone": "x",
+          "quando": "Semana 1",
+          "titulo": "Separar",
+          "sub": "fundamento × moda",
+          "saida": "Triaje con fuente y los fragmentos que solo tú tienes.",
+          "passo": "Antes de medir, saber qué vale la pena hacer."
+        },
+        {
+          "aula": "bateria-de-perguntas",
+          "icone": "grafico",
+          "quando": "Semanas 1 y 2",
+          "titulo": "Medir",
+          "sub": "paneles y batería (clases 2 y 3)",
+          "saida": "Línea base en los paneles y primera ronda de la batería.",
+          "passo": "Requiere el triaje. El mapa muestra los ejercicios de la clase 3; el plan de abajo los lista todos."
+        },
+        {
+          "aula": "colisao-de-nome",
+          "icone": "usuario",
+          "quando": "Semana 3",
+          "titulo": "Corregir",
+          "sub": "entidad, log y nota (clases 4 a 6)",
+          "saida": "Identidad corregida, robots revisados, nota con una corrección.",
+          "passo": "Requiere la medición: corregir sin línea base no muestra efecto."
+        },
+        {
+          "aula": "comercio-e-loop",
+          "icone": "robo",
+          "quando": "Semana 4",
+          "titulo": "Preparar",
+          "sub": "agentes y loop (clases 7 y 8)",
+          "saida": "Página de prueba WebMCP, formulario legible, loop programado.",
+          "passo": "Requiere el resto. De aquí en adelante, el loop mensual mide todo."
+        }
+      ],
+      "resultado": {
+        "titulo": "Al final del curso",
+        "texto": "Fundamento separado de la moda, medición oficial y a mano con fecha, entidad corregida, robots revisados y el sitio preparado para agentes.",
+        "total": "16 ejercicios"
+      },
+      "rolagem_fim": {
+        "titulo": "El curso completo",
+        "texto": "Separar, medir, corregir y preparar. Sube de nivel solo cuando el \"listo cuando\" del anterior sea verdad."
+      },
+      "legenda": "Después de este curso viene el 5: agentes en la terminal haciendo lo repetitivo, con compuertas."
+    },
+    {
+      "tipo": "gerador",
+      "titulo": "Genera tu plan con fechas",
+      "sub": "Elige la fecha de inicio y cuánto tiempo tienes por semana. El plan respeta los ejercicios que piden días de espera.",
+      "curso": "inemaSEO 4 · En las IAs",
+      "horas_padrao": 3,
+      "degraus": [
+        {
+          "titulo": "Clase 1 · AEO y GEO sin mitos",
+          "aula": "aeo-geo-sem-mito"
+        },
+        {
+          "titulo": "Clase 2 · Paneles oficiales",
+          "aula": "paineis-oficiais"
+        },
+        {
+          "titulo": "Clase 3 · Batería de preguntas",
+          "aula": "bateria-de-perguntas"
+        },
+        {
+          "titulo": "Clase 4 · Colisión de nombre",
+          "aula": "colisao-de-nome"
+        },
+        {
+          "titulo": "Clase 5 · Bing y robots en el log",
+          "aula": "bing-e-robos-no-log"
+        },
+        {
+          "titulo": "Clase 6 · Rúbrica de preparación",
+          "aula": "rubrica-readiness"
+        },
+        {
+          "titulo": "Clase 7 · WebMCP",
+          "aula": "webmcp-preparacao"
+        },
+        {
+          "titulo": "Clase 8 · Comercio y loop",
+          "aula": "comercio-e-loop"
+        }
+      ],
+      "txt": {
+        "titulo": "Plan — inemaSEO 4 · En las IAs",
+        "inicio": "Inicio",
+        "ritmo": "Ritmo",
+        "termino": "Fin previsto",
+        "ate": "hasta",
+        "pronto": "listo cuando",
+        "semanas": "semanas",
+        "travou": "## Lo que se trabó y lo que decidí",
+        "h": "h por semana",
+        "exs": "ejercicios"
+      }
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para llevar",
+      "itens": [
+        {
+          "t": "Legible para agentes",
+          "texto": "Elementos semánticos, etiquetas vinculadas, nada oculto, diseño estable."
+        },
+        {
+          "t": "Comercio",
+          "texto": "Merchant Center y Perfil de Empresa actualizados; protocolos nuevos, solo seguimiento."
+        },
+        {
+          "t": "La vara de 2026",
+          "texto": "Loop mensual con fecha: paneles oficiales, batería a mano, log y nota. Sin atajo, sin nota oficial de terceros."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir más allá",
+      "links": [
+        {
+          "t": "web.dev: sitios amigables para agentes (inglés)",
+          "href": "https://web.dev/articles/ai-agent-site-ux",
+          "icone": "robo"
+        },
+        {
+          "t": "Google: guía de optimización para IA, Merchant Center y Perfil de Empresa (inglés)",
+          "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "icone": "lupa"
+        },
+        {
+          "t": "Curso 5 de la Formación: Con Agentes",
+          "href": "https://inematds.github.io/formacao-inemaseo-agentes-v72/",
+          "icone": "terminal"
+        }
+      ]
+    }
+  ]
+}

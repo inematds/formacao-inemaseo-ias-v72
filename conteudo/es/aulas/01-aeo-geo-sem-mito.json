@@ -1,0 +1,411 @@
+{
+  "slug": "aeo-geo-sem-mito",
+  "num": 1,
+  "menu": "Sin mito",
+  "titulo": "AEO y GEO sin mitos: qué es oficial y qué es moda",
+  "titulo_curto": "AEO y GEO sin mitos",
+  "minutos": 16,
+  "lead": "AEO (optimizar para motores de respuesta) y GEO (optimizar para IA generativa) se volvieron un paquete que se vende con archivo, marcado y promesa. En mayo de 2026 Google publicó una guía que desarma buena parte de eso. Esta clase usa esa guía como vara para decidir dónde vale la pena gastar tu tiempo.",
+  "objetivo": "separar lo que Google, Bing y las IAs dicen oficialmente de lo que es moda y elegir dónde gastar tu tiempo.",
+  "competencias": [
+    "leer-fuente-oficial",
+    "separar-fundamento-de-moda",
+    "identificar-contenido-no-commodity"
+  ],
+  "aprende": [
+    {
+      "t": "Qué pide la guía de IA de Google (mayo/2026) y qué manda ignorar"
+    },
+    {
+      "t": "Por qué AEO y GEO son SEO bien hecho medido en otro panel"
+    },
+    {
+      "t": "Cómo responder a quien vende llms.txt como atajo"
+    },
+    {
+      "t": "Encontrar en tu sitio el contenido que solo tú puedes escribir"
+    }
+  ],
+  "hero_alt": "Mujer separa hojas impresas en dos bandejas de archivo sobre la mesa de la oficina.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Qué pesa y qué es moda",
+      "sub": "Haz clic en cada bloque.",
+      "nos": [
+        {
+          "icone": "camadas",
+          "titulo": "Fundamento",
+          "sub": "SEO bien hecho",
+          "forte": true,
+          "detalhe": "Google dice que no hay requisito adicional ni optimización especial para aparecer en AI Overviews y AI Mode: las buenas prácticas de SEO siguen valiendo. Rastreable, indexable, un solo canónico, contenido en el HTML. Es lo que hacen los cursos 1 a 3 de esta formación."
+        },
+        {
+          "icone": "alvo",
+          "titulo": "Contenido no commodity",
+          "sub": "lo que solo tú tienes",
+          "detalhe": "La guía de IA de Google (mayo/2026) señala el contenido no commodity como lo que más debe pesar en la presencia en IA a largo plazo: punto de vista propio, experiencia directa, datos que una IA no produciría sola. El ejemplo de commodity de la propia guía es \"7 consejos para quien compra su primera vivienda\"."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Medir en otro panel",
+          "sub": "lo que es nuevo de verdad",
+          "detalhe": "Lo nuevo en 2026 es dónde medir: el informe de IA generativa de Search Console (impresiones), el AI Performance de Bing (citas) y tu propia batería de preguntas ejecutada a mano. Las clases 2 y 3 se ocupan de eso."
+        },
+        {
+          "icone": "x",
+          "titulo": "Moda",
+          "sub": "sin fuente que la sostenga",
+          "itens": [
+            {
+              "icone": "arquivo",
+              "t": "llms.txt como palanca"
+            },
+            {
+              "icone": "terminal",
+              "t": "schema \"para IA\""
+            },
+            {
+              "icone": "lista",
+              "t": "\"chunking\" y 40–60 palabras como técnica"
+            },
+            {
+              "icone": "grafico",
+              "t": "\"nota oficial\" de herramienta de pago"
+            }
+          ],
+          "detalhe": "La guía dice que no necesitas crear archivos de texto para IA ni marcado especial, y que puedes ignorar el chunking, el llms.txt y las menciones inauténticas. También avisa: ninguna herramienta de terceros tiene acceso a los sistemas internos de ranking o de IA de Google."
+        }
+      ],
+      "legenda": "Gasta el tiempo en los tres primeros bloques. El cuarto no tiene fuente que lo sostenga como factor."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Cuatro afirmaciones comprobadas en la fuente",
+      "sub": "Haz clic en cada una. Todas se leyeron en las páginas oficiales el 19/10/2026.",
+      "passos": [
+        {
+          "titulo": "\"Necesitas un archivo para IA\"",
+          "sub": "Google",
+          "texto": [
+            "No lo necesitas. La página de funciones de IA de Google dice que no hace falta crear archivos legibles por máquina, archivos de texto para IA ni marcado especial, y que no existe un schema.org especial que agregar.",
+            "Los datos estructurados siguen siendo útiles cuando coinciden con el texto visible, como ya lo eran antes."
+          ]
+        },
+        {
+          "titulo": "\"llms.txt te pone en ChatGPT\"",
+          "sub": "estudio",
+          "texto": [
+            "El mayor estudio público (Ahrefs, 15/06/2026, 137 mil dominios) encontró 97% de los archivos llms.txt válidos sin ninguna solicitud en el mes. La guía de Google dice que puedes ignorarlo.",
+            "Lectura honesta: el llms.txt es opcional y barato, útil como índice para agentes de código, y no es palanca de citación."
+          ]
+        },
+        {
+          "titulo": "\"La respuesta de 40–60 palabras es la técnica\"",
+          "sub": "claridad",
+          "texto": [
+            "No hay fuente que sostenga ese tamaño como factor. Una respuesta directa al comienzo de la sección es buena para quien lee; trátala como claridad, no como truco de IA."
+          ]
+        },
+        {
+          "titulo": "\"Bing no importa\"",
+          "sub": "Bing",
+          "texto": [
+            "Importa dos veces: Bing alimenta a Copilot y tiene el único panel oficial de citas por IA. Y un estudio de Seer encontró el 87% de las citas de ChatGPT en el top 20 de Bing; es un estudio pequeño, no una declaración de OpenAI. Clase 5."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "La tabla de triaje",
+      "sub": "Copia y completa con las promesas que ya has escuchado. Una línea por promesa.",
+      "blocos": [
+        {
+          "rot": "triagem-geo.md",
+          "icone": "lista",
+          "conteudo": "# Triaje de promesas de AEO/GEO (fecha: dd/mm/aaaa)\n\n| Promesa que escuché | Fuente oficial que lo verifica | Veredicto |\n|---|---|---|\n| \"llms.txt te pone en ChatGPT\" | Google: guía de IA (puede ignorarlo); Ahrefs 15/06/2026: 97% sin lectura | opcional, barato, no es palanca |\n| \"schema especial para IA\" | Google: funciones de IA (no existe un schema especial) | moda |\n| \"contenido con datos propios\" | Google: guía de IA (no commodity) | fundamento |\n| <promesa 4> | <página oficial> | <fundamento / opcional / moda> |\n| <promesa 5> | <página oficial> | <fundamento / opcional / moda> |"
+        },
+        {
+          "rot": "Pregunta para encontrar lo no commodity",
+          "icone": "chat",
+          "conteudo": "Enumera 3 cosas que mi negocio sabe y que ningún competidor ni una IA podrían escribir por sí solos:\n1. un número que solo yo tengo (ej.: plazo promedio real de entrega, precio aplicado, resultado medido)\n2. una experiencia que solo yo viví (ej.: un caso, un error, un antes y un después)\n3. una opinión que defiendo con un motivo\nPara cada una: ¿en qué página de mi sitio ya está escrito esto? Si no está, ¿cuál sería la página dueña?"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "El caso de INEMA",
+            "html": "<p>En julio de 2026 INEMA midió su propia citación: apareció en <b>0 de 48</b> respuestas neutras en Claude y en <b>0 de 4</b> en Gemini (52 mediciones neutras). Después de eso publicó 54 fichas de conocimiento y empezó a medir en Search Console y en Bing.</p><p>La lección: el problema no era un archivo faltante, era la falta de contenido que respondiera a las preguntas neutras del tema.</p>"
+          },
+          {
+            "rot": "Dónde leer",
+            "html": "<ul><li>Guía de optimización para IA de Google (mayo/2026).</li><li>Funciones de IA y tu sitio (Google).</li><li>Estudio de llms.txt (Ahrefs, 15/06/2026).</li></ul><p>Enlaces al final de la clase.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "simconversa",
+      "titulo": "Conversación simulada: \"véndeme un llms.txt que me ponga en ChatGPT\"",
+      "sub": "Conversación ficticia para practicar. Elige la respuesta que darías; el comentario aparece enseguida.",
+      "personagem": {
+        "nome": "Dueña de una tienda de muebles a medida",
+        "papel": "sitio pequeño · clientes de la ciudad"
+      },
+      "inicio": "abre",
+      "falas": {
+        "abre": {
+          "cliente": "Me ofrecieron un paquete GEO con llms.txt que garantiza la tienda en ChatGPT. ¿Me vendes uno igual, más barato?",
+          "opcoes": [
+            {
+              "t": "Te lo vendo, y te lo garantizo: con el llms.txt la tienda entra en las respuestas de ChatGPT.",
+              "vai": "fim-promessa",
+              "nota": 0,
+              "comenta": "Prometiste algo que ninguna fuente respalda. El llms.txt es opcional, sin evidencia de citación, y nadie controla la respuesta de una IA."
+            },
+            {
+              "t": "El llms.txt es un archivo opcional, sin evidencia de que traiga citaciones. Antes: ¿qué quieres que pase cuando alguien le pregunta a una IA?",
+              "vai": "objetivo",
+              "nota": 2,
+              "comenta": "Corrigió la promesa con fuente y volvió al objetivo de la clienta, que es lo que decide el trabajo."
+            },
+            {
+              "t": "llms.txt es una estafa, no pierdas tu tiempo.",
+              "vai": "golpe",
+              "nota": 1,
+              "comenta": "Exagerado. El archivo es barato e inofensivo; el problema es venderlo como atajo. Y todavía no ayudaste a la clienta a decidir nada."
+            }
+          ]
+        },
+        "golpe": {
+          "cliente": "Entonces, ¿no hay nada que hacer para aparecer en las IAs?",
+          "opcoes": [
+            {
+              "t": "Sí hay, y empieza por lo que tú quieres: ¿qué pregunta te gustaría que trajera la tienda?",
+              "vai": "objetivo",
+              "nota": 1,
+              "comenta": "Volviste al camino correcto, con un rodeo de más."
+            },
+            {
+              "t": "No hay: la IA es una caja negra, no se puede hacer nada.",
+              "vai": "fim-nada",
+              "nota": 0,
+              "comenta": "Hay mucho por hacer y medir: fundación, contenido propio, paneles oficiales. Rendirse también es una respuesta sin fuente."
+            }
+          ]
+        },
+        "objetivo": {
+          "cliente": "Quiero que, cuando alguien pregunte por muebles a medida en mi ciudad, aparezca la tienda.",
+          "opcoes": [
+            {
+              "t": "Entonces empezamos por lo que pide Google: sitio rastreable, una página fuerte por servicio, con proyectos reales, plazos y precios que solo tú tienes.",
+              "vai": "medir",
+              "nota": 2,
+              "comenta": "Es la vara de la guía de Google: buen SEO y contenido no commodity. Nada de archivos mágicos."
+            },
+            {
+              "t": "Vamos a publicar 200 artículos con IA sobre muebles, uno por barrio.",
+              "vai": "fim-spam",
+              "nota": 0,
+              "comenta": "Muchas páginas generadas para manipular el ranking son contenido escalado, blanco de las políticas de spam de Google, que valen también para las respuestas de IA desde el 08/05/2026."
+            },
+            {
+              "t": "Vamos a poner un schema especial para IA en las páginas.",
+              "vai": "medir",
+              "nota": 1,
+              "comenta": "Los datos estructurados ayudan cuando coinciden con el texto, pero Google dice que no existe un schema especial para IA. Por ahí no aparece la tienda."
+            }
+          ]
+        },
+        "medir": {
+          "cliente": "¿Y cómo voy a saber si está funcionando?",
+          "opcoes": [
+            {
+              "t": "Por los paneles oficiales gratuitos, Search Console y Bing, y por una lista fija de preguntas que corremos a mano cada mes en cuatro asistentes, con planilla.",
+              "vai": "preco",
+              "nota": 2,
+              "comenta": "Medición honesta: panel oficial donde existe y muestra repetida donde no existe, siempre con fecha."
+            },
+            {
+              "t": "La herramienta X da la nota oficial de visibilidad en IA.",
+              "vai": "fim-nota",
+              "nota": 0,
+              "comenta": "Ninguna herramienta de terceros ve los sistemas internos de Google. El \"Share of voice\" de una herramienta de pago es una muestra, no una nota oficial."
+            }
+          ]
+        },
+        "preco": {
+          "cliente": "Y ese llms.txt, ¿queda fuera entonces?",
+          "opcoes": [
+            {
+              "t": "Si quieres, lo hago junto: es opcional y barato, lleva media hora. Solo que no lo cobro como si fuera la entrega que pone la tienda en ChatGPT.",
+              "vai": "fim-bom",
+              "nota": 2,
+              "comenta": "Honesto: el llms.txt queda en el lugar de opcional de bajo costo, y la clienta sabe qué está pagando."
+            },
+            {
+              "t": "Queda dentro, como entrega principal del paquete.",
+              "vai": "fim-promessa",
+              "nota": 0,
+              "comenta": "Volviste a vender el llms.txt como palanca de citación, sin evidencia. Cuando el resultado no llegue, la confianza se va con él."
+            }
+          ]
+        },
+        "fim-promessa": {
+          "fim": true,
+          "titulo": "Vendió la promesa",
+          "texto": "La clienta pagó por un archivo opcional como si fuera un pasaporte para ChatGPT. Meses después, nada cambió en las respuestas, y tu trabajo cargó con la culpa."
+        },
+        "fim-nada": {
+          "fim": true,
+          "titulo": "Se rindió antes de empezar",
+          "texto": "La clienta se fue pensando que no hay nada que hacer. Va a comprar el paquete del primero que le prometa algo, y tú perdiste la oportunidad de mostrarle el camino con fuente."
+        },
+        "fim-spam": {
+          "fim": true,
+          "titulo": "Contenido escalado",
+          "texto": "Doscientas páginas parecidas, sin datos propios, quedan en la mira de las políticas de spam de Google, que valen también para las respuestas de IA. Los lotes de páginas delgadas suelen ni siquiera indexarse."
+        },
+        "fim-nota": {
+          "fim": true,
+          "titulo": "Nota sin fuente",
+          "texto": "La clienta empezó a seguir un número de una herramienta como si fuera oficial. Cambia en cada ronda, y nadie sabe decir qué hacer con él."
+        },
+        "fim-bom": {
+          "fim": true,
+          "titulo": "Primero el fundamento, medición honesta",
+          "texto": "Fundación y contenido propio como trabajo principal, paneles oficiales y batería mensual como medición, llms.txt como opcional barato. La clienta sabe qué compra y cómo lo va a verificar."
+        }
+      },
+      "licao": "Nadie vende un lugar en la respuesta de una IA. El trabajo con fuente es SEO bien hecho, contenido que solo tiene el cliente y medición repetida; el llms.txt es opcional y barato."
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Práctica: tu triaje",
+      "sub": "Usa el modelo del bloque de arriba.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Triaje de 5 promesas",
+          "min": "20 min",
+          "texto": "Completa la tabla de triaje con 5 promesas de AEO/GEO que ya hayas escuchado (de un cliente, un anuncio, un video). Para cada una, abre la página oficial y escribe el veredicto.",
+          "pronto": "el archivo triagem-geo.md tiene 5 líneas, cada una con la página oficial y un veredicto (fundamento, opcional o moda)."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Tres fragmentos no commodity",
+          "min": "20 min",
+          "texto": "Responde la pregunta del segundo bloque para tu sitio o el de un cliente. Para cada elemento, señala la página que ya habla de eso o la que debería hablar.",
+          "pronto": "tienes 3 elementos (número, experiencia, opinión), cada uno con la URL de la página dueña o la anotación \"falta página\"."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Prueba lo que aprendiste",
+      "sub": "La explicación aparece después de tu respuesta.",
+      "perguntas": [
+        {
+          "p": "Según Google (mayo/2026), ¿qué hay que hacer de especial para aparecer en AI Overviews y AI Mode?",
+          "opcoes": [
+            "Publicar un llms.txt.",
+            "Agregar un schema especial para IA.",
+            "Nada especial: las buenas prácticas de SEO siguen valiendo.",
+            "Escribir todas las respuestas con 40 a 60 palabras."
+          ],
+          "certa": 2,
+          "explica": "Google dice que no hay ningún requisito adicional ni schema especial. El error común es tratar el llms.txt o el tamaño del párrafo como requisito.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "¿Cuál de estos es contenido no commodity?",
+          "opcoes": [
+            "\"7 consejos para quien compra su primer inmueble\".",
+            "El plazo promedio real de entrega que la tienda midió en los últimos pedidos.",
+            "Un resumen de otros artículos del tema.",
+            "La misma página traducida automáticamente a 10 idiomas."
+          ],
+          "certa": 1,
+          "explica": "Datos propios, que una IA no produciría por sí sola. Los \"7 consejos\" son el ejemplo de commodity de la propia guía; el resumen y la traducción masiva no agregan valor.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "¿Qué decir, con fuente, sobre el llms.txt?",
+          "opcoes": [
+            "Garantiza ser citado en ChatGPT.",
+            "Es opcional y barato; el estudio de Ahrefs (06/2026) encontró que el 97% de los archivos no tenía ninguna lectura.",
+            "Es obligatorio desde 2026.",
+            "Google lo exige para AI Mode."
+          ],
+          "certa": 1,
+          "explica": "Google dice que puede ignorarlo. Venderlo como atajo es vender moda; hacerlo como opcional barato no tiene problema.",
+          "ref": "passos"
+        },
+        {
+          "p": "Una herramienta de pago muestra tu \"nota oficial de visibilidad en IA\". ¿Cómo leerla?",
+          "opcoes": [
+            "Es el número que usa Google.",
+            "Es una muestra de la propia herramienta; ninguna herramienta de terceros ve los sistemas internos de Google.",
+            "Es igual al informe de Search Console.",
+            "Es el promedio de las citas de Bing."
+          ],
+          "certa": 1,
+          "explica": "La guía de Google lo advierte. Úsalo como muestra comparativa, nunca como nota oficial.",
+          "ref": "simconversa"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para llevar",
+      "itens": [
+        {
+          "t": "Fundamento",
+          "texto": "AEO y GEO son SEO bien hecho, medido en otro panel."
+        },
+        {
+          "t": "Lo que pesa",
+          "texto": "Contenido no commodity: datos propios, experiencia directa, opinión con fundamento."
+        },
+        {
+          "t": "La vara de 2026",
+          "texto": "Guía de IA de Google (mayo/2026): nada de archivo ni schema especial; llms.txt es opcional y barato, no una palanca de citación."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir más allá",
+      "links": [
+        {
+          "t": "Google: guía de optimización para IA generativa (inglés)",
+          "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "icone": "lupa"
+        },
+        {
+          "t": "Google: funciones de IA y tu sitio (inglés)",
+          "href": "https://developers.google.com/search/docs/appearance/ai-features",
+          "icone": "lupa"
+        },
+        {
+          "t": "Google: políticas de spam, contenido a escala (inglés)",
+          "href": "https://developers.google.com/search/docs/essentials/spam-policies#scaled-content",
+          "icone": "escudo"
+        },
+        {
+          "t": "Ahrefs: estudio de llms.txt (inglés)",
+          "href": "https://ahrefs.com/blog/llmstxt-study/",
+          "icone": "grafico"
+        },
+        {
+          "t": "Curso 1 de la Formación: Fundación",
+          "href": "https://inematds.github.io/formacao-inemaseo-fundacao-v72/",
+          "icone": "camadas"
+        }
+      ]
+    }
+  ]
+}

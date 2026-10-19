@@ -1,0 +1,257 @@
+{
+  "slug": "paineis-oficiais",
+  "num": 2,
+  "menu": "Paneles",
+  "titulo": "Paneles oficiales: el informe de IA de Search Console y el AI Performance de Bing",
+  "titulo_curto": "Paneles oficiales de IA",
+  "minutos": 17,
+  "lead": "En 2026 aparecieron los primeros paneles oficiales y gratuitos sobre IA: el informe de IA generativa de Search Console y el AI Performance de Bing, ahora con el Topics Portfolio. Cada uno mide algo distinto y ninguno mide todo. Saber qué es cada número evita sacar conclusiones equivocadas.",
+  "objetivo": "abrir el informe de IA de Search Console y el AI Performance de Bing, y anotar qué mide cada uno y qué no mide.",
+  "competencias": [
+    "ler-relatorio-ia-search-console",
+    "ler-ai-performance-bing",
+    "montar-linha-de-base"
+  ],
+  "aprende": [
+    {
+      "t": "Qué muestra el informe de IA generativa de Search Console (y qué le falta)"
+    },
+    {
+      "t": "Citas, páginas citadas y grounding queries en Bing"
+    },
+    {
+      "t": "Para qué sirve el Topics Portfolio (13/10/2026)"
+    },
+    {
+      "t": "Armar la línea de base del mes en una hoja de cálculo"
+    }
+  ],
+  "hero_alt": "Una persona señala con el bolígrafo gráficos en la pantalla del portátil, junto a un cuaderno y una taza de café.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Tres paneles, tres preguntas",
+      "sub": "Haz clic en cada bloque.",
+      "nos": [
+        {
+          "icone": "lupa",
+          "titulo": "Search Console",
+          "sub": "informe de IA generativa",
+          "detalhe": "Muestra impresiones en funciones de IA generativa de la Búsqueda de Google (incluye Discover). Según la página de ayuda, se habilitó para todos los sitios el 31/08/2026. Mide impresión, no cita ni clic. AI Overviews y AI Mode ya cuentan también en el informe de Rendimiento común."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Bing AI Performance",
+          "sub": "citas",
+          "forte": true,
+          "detalhe": "Vista previa pública desde febrero de 2026: total de citas, páginas citadas por día y las grounding queries (las frases que la IA usó para buscar el contenido citado). Cubre Copilot, los resúmenes de IA de Bing y socios seleccionados. Los datos son una muestra y no incluyen clics. Es el único panel oficial de \"me citaron\"."
+        },
+        {
+          "icone": "camadas",
+          "titulo": "Topics Portfolio",
+          "sub": "beta, 13/10/2026",
+          "detalhe": "Dentro de AI Performance, agrupa las grounding queries en temas y muestra demanda, competencia y consultas de oportunidad. Es nuevo y está en beta: anota la fecha cuando lo uses."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Tu hoja de cálculo",
+          "sub": "línea de base del mes",
+          "detalhe": "Los paneles no se hablan entre sí. Una fila por mes con impresiones de IA (Google), citas (Bing), páginas citadas y grounding queries se convierte en tu serie histórica. El tráfico que llega desde las IAs queda en GA4 (curso 3, lección 7)."
+        }
+      ],
+      "legenda": "Google cuenta impresiones, Bing cuenta citas, tu hoja de cálculo junta los dos con fecha."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Abrir y anotar, en cuatro pasos",
+      "sub": "Haz clic en cada paso. Necesitas el sitio verificado en los dos paneles (curso 1, lección 3).",
+      "passos": [
+        {
+          "titulo": "Search Console",
+          "sub": "impresiones de IA",
+          "texto": [
+            "Abre la propiedad del sitio y busca el informe de IA generativa. Anota el total de impresiones de los últimos 28 días y las páginas con más impresiones.",
+            "Si aparece poco o nada, anota \"sin datos aún\": también es línea de base."
+          ]
+        },
+        {
+          "titulo": "Bing AI Performance",
+          "sub": "citas",
+          "texto": [
+            "En Bing Webmaster Tools, abre AI Performance. Anota el total de citas, las 5 páginas más citadas y 5 grounding queries.",
+            "Exporta el CSV: no existe API para estos datos (un relato de terceros dice que está \"en el backlog, sin fecha\")."
+          ]
+        },
+        {
+          "titulo": "Topics Portfolio",
+          "sub": "temas",
+          "texto": [
+            "Si la beta ya aparece para tu sitio, anota los 3 temas con más demanda y donde la competencia es menor. Se convierten en pauta, junto con el curso 2."
+          ]
+        },
+        {
+          "titulo": "Léelo con cuidado",
+          "sub": "límites",
+          "texto": [
+            "Una impresión de IA no es un clic; una cita en Bing es una muestra; ninguna de las dos mide directamente ChatGPT, Claude o Gemini. Para esos, la clase 3 enseña la batería de preguntas."
+          ],
+          "exemplo": {
+            "rot": "Error común",
+            "texto": "Sumar las impresiones de Google con las citas de Bing en un solo número. Son medidas distintas: quédate con dos columnas."
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "La planilla del mes y el cruce con Google",
+      "sub": "El primer bloque es la planilla. El segundo es el modelo de bing-ia, que cruza el CSV de Bing con el historial de Search Console (enseñanza detallada en el curso 7).",
+      "blocos": [
+        {
+          "rot": "linha-de-base-ia.csv",
+          "icone": "lista",
+          "conteudo": "mes;gsc_impressoes_ia_28d;bing_citacoes;bing_paginas_citadas;top5_paginas_bing;top5_grounding_queries;observacao\n2026-10;<n ou sem dado>;<n>;<n>;<url1|url2|...>;<consulta1|consulta2|...>;<o que mudou no site este mês>"
+        },
+        {
+          "rot": "bing-ia · modelo (inemaseo-sistemas, MIT)",
+          "icone": "terminal",
+          "conteudo": "git clone https://github.com/inematds/inemaseo-sistemas && cd inemaseo-sistemas/ferramentas/bing-ia\n# 1. importar los CSV exportados de AI Performance (páginas y grounding queries)\npython3 bing_ia.py importar ~/Downloads/ai-performance-*.csv --db dados/bing.sqlite\n# 2. cruzar con el historial de Search Console (gsc-historico)\npython3 bing_ia.py relatorio --db dados/bing.sqlite --gsc-db ../gsc-historico/dados/gsc.sqlite --site seusite.com --saida saida/seusite"
+        }
+      ],
+      "saida": {
+        "selo": "simulacao",
+        "abas": [
+          {
+            "rot": "Lo que separa el informe",
+            "html": "<p>bing-ia divide las páginas en cuatro grupos:</p><ul><li><b>Citadas por la IA y con clic en Google</b>: funcionan en los dos; mantenlas actualizadas.</li><li><b>Citadas, sin clic en Google</b>: la IA confía, Google no manda gente; revisa el título y la consulta objetivo.</li><li><b>Con clic en Google, nunca citadas</b>: candidatas a respuesta directa, autoría y fecha.</li><li><b>Ideas</b>: grounding queries que nunca aparecieron en Search Console.</li></ul>"
+          },
+          {
+            "rot": "Atención al ejemplo",
+            "html": "<p>El ejemplo del repositorio usa CSV <b>ficticios</b> (números inventados, URLs reales) para mostrar la herramienta. Microsoft no documenta las columnas del export: los nombres que la herramienta reconoce son una suposición que debes confirmar con un CSV real.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Práctica: tu línea base",
+      "sub": "Toma unos 30 minutos si el sitio ya está verificado.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Línea base del mes",
+          "min": "20 min",
+          "texto": "Completa la primera fila de la planilla con las impresiones de IA de Search Console y las citas de Bing. ¿Todavía no tienes datos? Escribe \"sem dado\" y la fecha: en tres meses tendrás con qué comparar.",
+          "pronto": "linha-de-base-ia.csv tiene la fila del mes con las dos columnas completas (número o \"sem dado\") y la fecha."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Cinco grounding queries",
+          "min": "15 min",
+          "texto": "En AI Performance, anota 5 grounding queries y la página citada en cada una. Marca cuáles de esas frases también aparecen en el Search Console de tu sitio.",
+          "pronto": "lista con 5 grounding queries, la página citada y \"aparece en Google: sí/no\" (o la anotación de que Bing todavía no muestra citas)."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Prueba lo que aprendiste",
+      "sub": "La explicación aparece después de tu respuesta.",
+      "perguntas": [
+        {
+          "p": "¿Qué muestra el informe de IA generativa de Search Console?",
+          "opcoes": [
+            "Clics que vienen de ChatGPT.",
+            "Impresiones en funciones de IA generativa de la Búsqueda de Google.",
+            "Citas en todas las IAs.",
+            "La posición del sitio en AI Mode."
+          ],
+          "certa": 1,
+          "explica": "Es un informe de impresiones. No mide citas ni otras IAs. El error común es leer una impresión como si fuera un clic.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "¿Cuál es el único panel oficial que muestra citas por IA?",
+          "opcoes": [
+            "Google Analytics 4.",
+            "Bing Webmaster Tools, AI Performance.",
+            "Search Console, informe de Rendimiento.",
+            "El panel de la CDN."
+          ],
+          "certa": 1,
+          "explica": "AI Performance muestra citas, páginas citadas y grounding queries de Copilot y de los resúmenes de Bing. Son una muestra y no tienen clics.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "¿Qué es una grounding query?",
+          "opcoes": [
+            "La palabra clave que elegiste.",
+            "La frase que la IA usó para buscar el contenido que terminó citando.",
+            "Una consulta de marca.",
+            "Un tipo de schema."
+          ],
+          "certa": 1,
+          "explica": "Es la búsqueda que la IA hizo detrás de la respuesta. Una lista de grounding queries es una agenda de temas con demanda comprobada.",
+          "ref": "passos"
+        },
+        {
+          "p": "¿Cómo juntar Google y Bing en el informe del mes?",
+          "opcoes": [
+            "Sumar impresiones y citas en un solo total.",
+            "Mantener columnas separadas, con la fecha, porque miden cosas distintas.",
+            "Usar solo el mayor de los dos.",
+            "Cambiarlo por el número de una herramienta de pago."
+          ],
+          "certa": 1,
+          "explica": "Impresión y cita no se suman. Dos columnas por mes se convierten en una serie histórica comparable.",
+          "ref": "codigo"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para llevar",
+      "itens": [
+        {
+          "t": "Google",
+          "texto": "Informe de IA generativa: impresiones, para todos los sitios desde el 31/08/2026."
+        },
+        {
+          "t": "Bing",
+          "texto": "AI Performance: citas y grounding queries (muestra, sin clics); Topics Portfolio en beta desde el 13/10/2026."
+        },
+        {
+          "t": "La vara de 2026",
+          "texto": "Son los únicos números oficiales de IA. Una herramienta de pago da una muestra, no una nota oficial."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir más allá",
+      "links": [
+        {
+          "t": "Search Console: informe de IA generativa (ayuda)",
+          "href": "https://support.google.com/webmasters/answer/16984139",
+          "icone": "lupa"
+        },
+        {
+          "t": "Bing: AI Performance en Webmaster Tools (inglés)",
+          "href": "https://blogs.bing.com/webmaster/2026/02/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+          "icone": "grafico"
+        },
+        {
+          "t": "Bing: Topics Portfolio, beta (inglés)",
+          "href": "https://blogs.bing.com/webmaster/2026/10/introducing-topics-portfolio-beta-in-ai-performance/",
+          "icone": "camadas"
+        },
+        {
+          "t": "inemaseo-sistemas: bing-ia y las otras herramientas (MIT)",
+          "href": "https://github.com/inematds/inemaseo-sistemas",
+          "icone": "git"
+        }
+      ]
+    }
+  ]
+}

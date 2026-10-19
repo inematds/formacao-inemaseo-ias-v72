@@ -1,0 +1,125 @@
+{
+  "slug": "bing-e-robos-no-log",
+  "num": 5,
+  "menu": "Bing e log",
+  "titulo": "O Bing importa duas vezes; os robôs de IA no log do servidor",
+  "titulo_curto": "Bing e robôs no log",
+  "minutos": 18,
+  "lead": "O Bing alimenta o Copilot e tem o único painel oficial de citações; e um estudo achou boa parte das citações do ChatGPT entre os primeiros resultados do Bing. Avisar o Bing custa pouco. Do outro lado, o log do servidor diz quem lê o site de verdade: quais robôs de IA, para que finalidade e quais são falsos.",
+  "objetivo": "conferir o site no Bing com IndexNow e ler no log quais robôs de IA visitam de verdade, separados por finalidade.",
+  "competencias": ["avisar-bing-indexnow", "ler-log-de-robos", "separar-robo-falso"],
+  "aprende": [
+    {"t": "As duas razões para cuidar do Bing (e o que é estudo, não fato)"},
+    {"t": "Avisar o IndexNow só com URLs que respondem 200"},
+    {"t": "Ler o log por finalidade: busca, ação do usuário, treino"},
+    {"t": "Achar robô falso e bloqueio de CDN no log"}
+  ],
+  "hero_alt": "Técnica de infraestrutura olha o notebook apoiado num carrinho, numa sala de servidores.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Quem acha, quem lê, quem cita",
+      "sub": "Clique em cada bloco.",
+      "nos": [
+        {"icone": "megafone", "titulo": "IndexNow + Bing", "sub": "avisar",
+         "detalhe": "IndexNow avisa os buscadores participantes (o Bing entre eles) que uma URL é nova ou mudou. O Google não participa. Só avise URL que responde 200."},
+        {"icone": "grafico", "titulo": "Bing duas vezes", "sub": "Copilot + índice", "forte": true,
+         "detalhe": "1) O Bing alimenta o Copilot e mostra as citações no AI Performance (aula 2). 2) Um estudo da Seer (cerca de 100 perguntas, 500+ citações) achou 87% das citações do ChatGPT no top 20 do Bing, contra 56% no Google. É estudo pequeno, não declaração da OpenAI."},
+        {"icone": "pasta", "titulo": "Log do servidor", "sub": "quem pediu a página",
+         "detalhe": "Cada linha diz IP, caminho, resposta e User-Agent. É a única fonte que mostra quais robôs de IA chegaram até o seu site. Mostra pedido, não uso: para citação, olhe o Bing."},
+        {"icone": "robo", "titulo": "Por finalidade", "sub": "busca · usuário · treino",
+         "itens": [{"icone": "lupa", "t": "busca: OAI-SearchBot, Claude-SearchBot, PerplexityBot"}, {"icone": "usuario", "t": "ação do usuário: ChatGPT-User, Claude-User, Perplexity-User"}, {"icone": "cerebro", "t": "treino: GPTBot, ClaudeBot"}],
+         "detalhe": "Agrupe os acessos pela finalidade do robô. Google-Extended não aparece em log: é só um token de robots.txt; quem rastreia é o Googlebot."},
+        {"icone": "escudo", "titulo": "Falsos e bloqueios", "sub": "conferir o IP",
+         "detalhe": "Qualquer um escreve \"GPTBot\" no User-Agent. Confira o IP nas listas oficiais que as empresas publicam. E um 403 para robô de IA costuma ser bloqueio da CDN, não do robots.txt."}
+      ],
+      "legenda": "Avise o Bing, depois confira no log quem veio de verdade."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Na prática, em quatro passos",
+      "sub": "Clique em cada passo.",
+      "passos": [
+        {"titulo": "Sitemap no Bing", "sub": "Webmaster Tools",
+         "texto": ["Confira no Bing Webmaster que o sitemap foi lido com sucesso (curso 1, aula 3). Sem isso, nem o AI Performance nem o IndexNow rendem."]},
+        {"titulo": "IndexNow", "sub": "chave pública + aviso",
+         "texto": ["Publique a chave em um arquivo .txt na raiz do site e avise as URLs novas depois de cada publicação. O script do método confere o 200 antes de avisar.", "No INEMA: 109 URLs avisadas com resposta 202 em 24/09/2026 e 90 URLs com 200 em 02/10/2026."]},
+        {"titulo": "Pegar o log", "sub": "só leitura",
+         "texto": ["No servidor (nginx ou Apache), copie o access log para o seu computador. Atrás de CDN, use o log da CDN: o do servidor só vê o que passou por ela.", "IP de pessoa é dado pessoal (LGPD): antes de mostrar a alguém, guarde só as linhas de robô."]},
+        {"titulo": "Ler por finalidade", "sub": "botlog",
+         "texto": ["Rode o botlog (inemaseo-sistemas, MIT) ou filtre à mão por User-Agent. Olhe três coisas: que finalidade aparece, quantos falsos há e se algum robô de busca recebeu 403."],
+         "exemplo": {"rot": "Leitura comum", "texto": "Só robôs de treino no log e nenhum de busca: o site pode estar fora do índice das IAs de busca. Confira o robots.txt e a CDN (curso 1, aula 6)."}}
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "IndexNow e botlog",
+      "sub": "O primeiro bloco é do método inemaSEO (só modelo: precisa da sua chave). O segundo lê o log no seu computador; ensino detalhado no curso 7.",
+      "blocos": [
+        {"rot": "avisar_buscadores.sh (inemaseo-metodo)", "icone": "terminal",
+         "conteudo": "# urls.txt: uma URL por linha, todas do mesmo host\n# a chave IndexNow fica publicada em https://seusite.com/<chave>.txt\nINDEXNOW_KEY=<chave> tools/avisar_buscadores.sh urls.txt\n# confere o 200 de cada URL antes de avisar; para se alguma não responder 200"},
+        {"rot": "botlog (inemaseo-sistemas)", "icone": "terminal",
+         "conteudo": "git clone https://github.com/inematds/inemaseo-sistemas && cd inemaseo-sistemas/ferramentas/botlog\n# copie o log do servidor (só leitura)\nssh usuario@SEU_SERVIDOR 'cd /var/log/nginx; zcat -f access.log.*.gz; cat access.log.1 access.log' > /tmp/site.log\n# relatório por finalidade, com IP conferido nas listas oficiais\npython3 botlog.py analisar /tmp/site.log --sitemap https://seusite.com/sitemap.xml --saida saida/site\n# LGPD: antes de compartilhar, guarde só as linhas de robô com IP oficial\npython3 botlog.py filtrar /tmp/site.log --saida /tmp/so-robos.log"}
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {"rot": "Saída capturada (19/10/2026)", "html": "<p>botlog no log real de desenho.inema.pro (05 a 19/10/2026), já filtrado só com robôs de IP oficial:</p><pre>8 linhas, 8 de robô (treino 6, busca 2); falsos 0\n\nrobo           finalidade  acessos  paginas  robots_txt  4xx/5xx\nGPTBot         treino      4        2        0           0\nClaudeBot      treino      2        2        1           0\nOAI-SearchBot  busca       2        1        2           1</pre>"},
+          {"rot": "Amostra montada", "html": "<p>Na amostra montada do repositório (IPs de documentação, User-Agents oficiais), o relatório acusa:</p><ul><li><b>4 falsos</b>: GPTBot, Googlebot e PerplexityBot vindos de IP fora da lista oficial.</li><li>Um <b>403 para o ClaudeBot</b>, que simula bloqueio de CDN.</li><li>Uma página do sitemap que <b>nenhum robô leu</b>.</li></ul>"},
+          {"rot": "Limite honesto", "html": "<ul><li>Log mostra pedido, não citação.</li><li>Atrás de CDN, o IP pode ser o da CDN: use o log dela.</li><li>Lista de IP velha gera falso \"falso\": atualize.</li></ul>"}
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: avisar e conferir",
+      "sub": "Sem acesso ao log? Faça o E2 com o exemplo do repositório.",
+      "exercicios": [
+        {"id": "e1", "titulo": "E1 · IndexNow e Bing", "min": "25 min",
+         "texto": "Confira o sitemap no Bing Webmaster, publique a chave IndexNow e avise 3 URLs novas ou alteradas que respondem 200.",
+         "pronto": "o Bing mostra o sitemap com status de sucesso e o aviso IndexNow respondeu 200 ou 202."},
+        {"id": "e2", "titulo": "E2 · Robôs por finalidade", "min": "30 min",
+         "texto": "Rode o botlog no log do seu site (ou no exemplo REAL do repositório) e anote os acessos por finalidade, os falsos e os 403 para robô de IA.",
+         "pronto": "uma anotação com a contagem por finalidade (busca, ação do usuário, treino), o número de falsos e a lista de 403 (ou \"nenhum\")."}
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {"p": "\"O ChatGPT usa o índice do Bing.\" Como dizer isso com honestidade?",
+         "opcoes": ["É fato documentado pela OpenAI.", "Um estudo da Seer achou 87% das citações no top 20 do Bing; é estudo pequeno, não declaração da OpenAI.", "É falso.", "Só vale para o Copilot."],
+         "certa": 1, "explica": "Indício de estudo, com amostra pequena. Bom motivo para avisar o Bing, não promessa de ChatGPT.", "ref": "diagrama", "cert": true},
+        {"p": "O log mostra 30 acessos de \"GPTBot\" vindos de um IP fora da lista da OpenAI. O que são?",
+         "opcoes": ["Treino da OpenAI.", "Robô falso: alguém usando o nome no User-Agent.", "Busca do ChatGPT.", "Erro do servidor."],
+         "certa": 1, "explica": "User-Agent qualquer um escreve. Sem o IP na lista oficial, não conte como robô da OpenAI.", "ref": "diagrama"},
+        {"p": "O OAI-SearchBot recebe 403 no log, mas o robots.txt libera. Onde olhar?",
+         "opcoes": ["No sitemap.", "Na CDN ou no firewall: é quem bloqueia de verdade.", "No llms.txt.", "No Search Console."],
+         "certa": 1, "explica": "robots.txt pede; a CDN impõe. 403 para robô de IA costuma ser regra da CDN.", "ref": "codigo"},
+        {"p": "Por que procurar Google-Extended no log não funciona?",
+         "opcoes": ["Porque ele usa IP secreto.", "Porque é só um token de robots.txt; quem rastreia é o Googlebot.", "Porque ele não existe mais.", "Porque só aparece no Bing."],
+         "certa": 1, "explica": "Google-Extended controla o uso para treinar o Gemini, sem robô próprio. Não afeta a Busca do Google.", "ref": "diagrama"}
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para levar",
+      "itens": [
+        {"t": "Bing", "texto": "Avise com IndexNow só URLs 200; o Bing alimenta o Copilot e o único painel de citações."},
+        {"t": "Log", "texto": "Leia por finalidade, confira o IP e procure 403 para robô de IA."},
+        {"t": "Régua de 2026", "texto": "ChatGPT–Bing é indício de estudo da Seer, não declaração da OpenAI. Log mostra pedido, não citação."}
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir além",
+      "links": [
+        {"t": "IndexNow (inglês)", "href": "https://www.indexnow.org/", "icone": "megafone"},
+        {"t": "Seer Interactive: citações do ChatGPT e o Bing (inglês)", "href": "https://www.seerinteractive.com/insights/87-percent-of-searchgpt-citations-match-bings-top-results", "icone": "grafico"},
+        {"t": "OpenAI: robôs e faixas de IP (inglês)", "href": "https://platform.openai.com/docs/bots", "icone": "robo"},
+        {"t": "inemaseo-sistemas: botlog (MIT)", "href": "https://github.com/inematds/inemaseo-sistemas", "icone": "git"}
+      ]
+    }
+  ]
+}

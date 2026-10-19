@@ -1,0 +1,411 @@
+{
+  "slug": "aeo-geo-sem-mito",
+  "num": 1,
+  "menu": "No myths",
+  "titulo": "AEO and GEO without the myths: what's official and what's a fad",
+  "titulo_curto": "AEO and GEO without the myths",
+  "minutos": 16,
+  "lead": "AEO (optimizing for answer engines) and GEO (optimizing for generative AI) have become a package sold with a file, markup, and a promise. In May 2026, Google published a guide that takes much of that apart. This lesson uses that guide as a yardstick to decide where your time is worth spending.",
+  "objetivo": "separate what Google, Bing, and the AIs officially say from what's a fad, and choose where to spend your time.",
+  "competencias": [
+    "ler-fonte-oficial",
+    "separar-fundamento-de-moda",
+    "identificar-conteudo-nao-commodity"
+  ],
+  "aprende": [
+    {
+      "t": "What Google's AI guide (May 2026) asks for and what it says to ignore"
+    },
+    {
+      "t": "Why AEO and GEO are well-done SEO measured on a different dashboard"
+    },
+    {
+      "t": "How to respond to anyone selling llms.txt as a shortcut"
+    },
+    {
+      "t": "Find the content on your site that only you can write"
+    }
+  ],
+  "hero_alt": "A woman sorts printed sheets into two file trays on an office desk.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "What matters and what's a fad",
+      "sub": "Click each block.",
+      "nos": [
+        {
+          "icone": "camadas",
+          "titulo": "Foundation",
+          "sub": "Well-done SEO",
+          "forte": true,
+          "detalhe": "Google says there is no additional requirement or special optimization to appear in AI Overviews and AI Mode: SEO best practices still apply. Crawlable, indexable, one canonical, content in the HTML. This is what courses 1 to 3 of this program do."
+        },
+        {
+          "icone": "alvo",
+          "titulo": "Non-commodity content",
+          "sub": "what only you have",
+          "detalhe": "Google's AI guide (May 2026) points to non-commodity content as what should weigh most in your AI presence over the long term: your own point of view, direct experience, data that an AI wouldn't produce on its own. The guide's own example of commodity is \"7 tips for first-time home buyers\"."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Measure on a different dashboard",
+          "sub": "what's truly new",
+          "detalhe": "What's new in 2026 is where you measure: Search Console's generative AI report (impressions), Bing's AI Performance (citations), and your own question battery run by hand. Lessons 2 and 3 cover this."
+        },
+        {
+          "icone": "x",
+          "titulo": "Fad",
+          "sub": "no source to back it up",
+          "itens": [
+            {
+              "icone": "arquivo",
+              "t": "llms.txt as a lever"
+            },
+            {
+              "icone": "terminal",
+              "t": "schema \"for AI\""
+            },
+            {
+              "icone": "lista",
+              "t": "\"chunking\" and 40–60 words as a technique"
+            },
+            {
+              "icone": "grafico",
+              "t": "\"official grade\" from a paid tool"
+            }
+          ],
+          "detalhe": "The guide says you don't need to create text files for AI or special markup, and that you can ignore chunking, llms.txt, and inauthentic mentions. It also warns: no third-party tool has access to Google's internal ranking or AI systems."
+        }
+      ],
+      "legenda": "Spend your time on the first three blocks. The fourth has no source to support it as a factor."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Four claims checked against the source",
+      "sub": "Click each one. All were read on the official pages on 10/19/2026.",
+      "passos": [
+        {
+          "titulo": "\"You need a file for AI\"",
+          "sub": "Google",
+          "texto": [
+            "You don't. Google's AI features page says you don't need to create machine-readable files, text files for AI, or special markup, and that there is no special schema.org to add.",
+            "Structured data is still useful when it matches the visible text, just as it was before."
+          ]
+        },
+        {
+          "titulo": "\"llms.txt gets you into ChatGPT\"",
+          "sub": "study",
+          "texto": [
+            "The largest public study (Ahrefs, 06/15/2026, 137 thousand domains) found 97% of valid llms.txt files had no requests at all in the month. Google's guide says you can ignore it.",
+            "Honest read: llms.txt is optional and cheap, useful as an index for coding agents, and not a citation lever."
+          ]
+        },
+        {
+          "titulo": "\"A 40–60 word answer is the technique\"",
+          "sub": "clarity",
+          "texto": [
+            "No source supports that length as a factor. A direct answer at the start of a section is good for readers; treat it as clarity, not an AI trick."
+          ]
+        },
+        {
+          "titulo": "\"Bing doesn't matter\"",
+          "sub": "Bing",
+          "texto": [
+            "It matters twice: Bing feeds Copilot and has the only official AI citations dashboard. And a Seer study found 87% of ChatGPT citations in Bing's top 20; it's a small study, not a statement from OpenAI. Lesson 5."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "The triage table",
+      "sub": "Copy it and fill it in with the promises you've already heard. One row per promise.",
+      "blocos": [
+        {
+          "rot": "triagem-geo.md",
+          "icone": "lista",
+          "conteudo": "# AEO/GEO promises triage (date: dd/mm/yyyy)\n\n| Promise I heard | Official source that checks it | Verdict |\n|---|---|---|\n| \"llms.txt gets you into ChatGPT\" | Google: AI guide (can ignore it); Ahrefs 06/15/2026: 97% no reads | optional, cheap, not a lever |\n| \"special schema for AI\" | Google: AI features (no special schema exists) | fad |\n| \"content with your own data\" | Google: AI guide (non-commodity) | foundation |\n| <promise 4> | <official page> | <foundation / optional / fad> |\n| <promise 5> | <official page> | <foundation / optional / fad> |"
+        },
+        {
+          "rot": "A question to find your non-commodity content",
+          "icone": "chat",
+          "conteudo": "List 3 things my business knows that no competitor or AI could write on their own:\n1. a number only I have (e.g.: real average delivery time, price charged, measured result)\n2. an experience only I have lived (e.g.: a case, a mistake, a before and after)\n3. an opinion I defend with a reason\nFor each one: which page on my site already says it? If none does, which page would be the owner page?"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "The INEMA case",
+            "html": "<p>In July 2026 INEMA measured its own citation: it appeared in <b>0 of 48</b> neutral answers on Claude and <b>0 of 4</b> on Gemini (52 neutral measurements). After that it published 54 knowledge sheets and started measuring in Search Console and Bing.</p><p>The lesson: the problem wasn't a missing file. It was missing content that answered the neutral questions on the topic.</p>"
+          },
+          {
+            "rot": "Where to read",
+            "html": "<ul><li>Google's AI optimization guide (May/2026).</li><li>AI features and your website (Google).</li><li>llms.txt study (Ahrefs, 06/15/2026).</li></ul><p>Links at the end of the lesson.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "simconversa",
+      "titulo": "Simulated conversation: \"sell me an llms.txt that gets me into ChatGPT\"",
+      "sub": "A made-up conversation for practice. Pick the answer you would give; the comment appears right after.",
+      "personagem": {
+        "nome": "Custom furniture store owner",
+        "papel": "small site · local city customers"
+      },
+      "inicio": "abre",
+      "falas": {
+        "abre": {
+          "cliente": "I was offered a GEO package with an llms.txt that guarantees the store shows up in ChatGPT. Will you sell me the same thing, cheaper?",
+          "opcoes": [
+            {
+              "t": "I'll sell it, and I guarantee it: with llms.txt the store gets into ChatGPT's answers.",
+              "vai": "fim-promessa",
+              "nota": 0,
+              "comenta": "You promised what no source supports. llms.txt is optional, with no evidence of citation, and nobody controls an AI's answer."
+            },
+            {
+              "t": "llms.txt is an optional file, with no evidence that it brings citation. First: what do you want to happen when someone asks an AI?",
+              "vai": "objetivo",
+              "nota": 2,
+              "comenta": "You corrected the promise with a source and went back to the client's goal, which is what decides the work."
+            },
+            {
+              "t": "llms.txt is a scam, don't waste your time.",
+              "vai": "golpe",
+              "nota": 1,
+              "comenta": "Overstated. The file is cheap and harmless; the problem is selling it as a shortcut. And you haven't helped the client decide anything yet."
+            }
+          ]
+        },
+        "golpe": {
+          "cliente": "So there's nothing to do to show up in the AIs?",
+          "opcoes": [
+            {
+              "t": "There is, and it starts with what you want: which question would you like to bring the store up?",
+              "vai": "objetivo",
+              "nota": 1,
+              "comenta": "Back on the right path, with one extra turn."
+            },
+            {
+              "t": "There isn't: AI is a black box, nothing can be done.",
+              "vai": "fim-nada",
+              "nota": 0,
+              "comenta": "There's a lot to do and measure: foundation, your own content, official dashboards. Giving up is also an answer with no source."
+            }
+          ]
+        },
+        "objetivo": {
+          "cliente": "I want the store to show up when someone asks about custom furniture in my city.",
+          "opcoes": [
+            {
+              "t": "Then we start with what Google asks for: a crawlable site, one strong page per service, with real projects, lead times and prices that only you have.",
+              "vai": "medir",
+              "nota": 2,
+              "comenta": "That's the yardstick from Google's guide: well-done SEO and non-commodity content. No magic file."
+            },
+            {
+              "t": "Let's publish 200 AI articles about furniture, one per neighborhood.",
+              "vai": "fim-spam",
+              "nota": 0,
+              "comenta": "Lots of pages generated to manipulate rankings is scaled content, a target of Google's spam policies, which have also applied to AI answers since 05/08/2026."
+            },
+            {
+              "t": "Let's put a special schema for AI on the pages.",
+              "vai": "medir",
+              "nota": 1,
+              "comenta": "Structured data helps when it matches the text, but Google says there is no special schema for AI. That's not how the store shows up."
+            }
+          ]
+        },
+        "medir": {
+          "cliente": "And how will I know if it's working?",
+          "opcoes": [
+            {
+              "t": "Through the free official dashboards, Search Console and Bing, and through a fixed list of questions we run by hand every month on four assistants, with a spreadsheet.",
+              "vai": "preco",
+              "nota": 2,
+              "comenta": "Honest measurement: an official dashboard where one exists, and a repeated sample where it doesn't, always with a date."
+            },
+            {
+              "t": "Tool X gives the official AI visibility score.",
+              "vai": "fim-nota",
+              "nota": 0,
+              "comenta": "No third-party tool sees Google's internal systems. A paid tool's \"share of voice\" is a sample, not an official score."
+            }
+          ]
+        },
+        "preco": {
+          "cliente": "And that llms.txt, so it stays out?",
+          "opcoes": [
+            {
+              "t": "If you want, I'll do it alongside: it's optional and cheap, takes half an hour. I just won't charge for it as if it were the deliverable that puts the store in ChatGPT.",
+              "vai": "fim-bom",
+              "nota": 2,
+              "comenta": "Honest: llms.txt sits in the low-cost optional slot, and the client knows what they're paying for."
+            },
+            {
+              "t": "It stays in, as the main deliverable of the package.",
+              "vai": "fim-promessa",
+              "nota": 0,
+              "comenta": "You went back to selling llms.txt as a citation lever, with no evidence. When the result doesn't come, trust goes with it."
+            }
+          ]
+        },
+        "fim-promessa": {
+          "fim": true,
+          "titulo": "You sold the promise",
+          "texto": "The client paid for an optional file as if it were a passport to ChatGPT. Months later, nothing changed in the answers, and your work took the blame."
+        },
+        "fim-nada": {
+          "fim": true,
+          "titulo": "Gave up before starting",
+          "texto": "The client left thinking there is nothing to be done. She will buy the package from the first person who promises one, and you lost the chance to show the path with a source."
+        },
+        "fim-spam": {
+          "fim": true,
+          "titulo": "Scaled content",
+          "texto": "Two hundred similar pages, with no data of their own, fall under Google's spam policies, which also apply to AI answers. Batches of thin pages often don't even get indexed."
+        },
+        "fim-nota": {
+          "fim": true,
+          "titulo": "Score with no source",
+          "texto": "The client started tracking a tool's number as if it were official. It changes every round, and nobody can say what to do with it."
+        },
+        "fim-bom": {
+          "fim": true,
+          "titulo": "Foundation first, honest measurement",
+          "texto": "Foundation and original content as the main work, official dashboards and a monthly battery as measurement, llms.txt as a cheap optional extra. The client knows what she is buying and how she will check it."
+        }
+      },
+      "licao": "Nobody sells a spot in an AI answer. The work with a source is well-done SEO, content only the client has, and repeated measurement; llms.txt is optional and cheap."
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: your triage",
+      "sub": "Use the template from the block above.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Triage of 5 promises",
+          "min": "20 min",
+          "texto": "Fill in the triage table with 5 AEO/GEO promises you have already heard (from a client, an ad, a video). For each one, open the official page and write the verdict.",
+          "pronto": "the triagem-geo.md file has 5 rows, each with the official page and a verdict (foundation, optional, or fad)."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Three non-commodity passages",
+          "min": "20 min",
+          "texto": "Answer the question from the second block for your site or a client's. For each item, point to the page that already covers it or the one that should.",
+          "pronto": "you have 3 items (number, experience, opinion), each with the URL of the owner page or the note \"page missing\"."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "According to Google (May 2026), what do you need to do that's special to appear in AI Overviews and AI Mode?",
+          "opcoes": [
+            "Publish an llms.txt.",
+            "Add a special schema for AI.",
+            "Nothing special: good SEO practices still apply.",
+            "Write all answers with 40 to 60 words."
+          ],
+          "certa": 2,
+          "explica": "Google says there is no additional requirement or special schema. The common mistake is treating llms.txt or paragraph length as a requirement.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "Which of these is non-commodity content?",
+          "opcoes": [
+            "\"7 tips for first-time homebuyers.\"",
+            "The real average delivery time the store measured on its latest orders.",
+            "A summary of other articles on the topic.",
+            "The same page automatically translated into 10 languages."
+          ],
+          "certa": 1,
+          "explica": "Your own data, which an AI wouldn't produce on its own. The \"7 tips\" is the guide's own example of commodity; mass summaries and translations add no value.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "What can you say, with a source, about llms.txt?",
+          "opcoes": [
+            "It guarantees a citation in ChatGPT.",
+            "It's optional and cheap; the Ahrefs study (06/2026) found 97% of the files with no reads at all.",
+            "It has been mandatory since 2026.",
+            "Google requires it for AI Mode."
+          ],
+          "certa": 1,
+          "explica": "Google says it may ignore it. Selling it as a shortcut is selling a fad; doing it as a cheap optional extra is fine.",
+          "ref": "passos"
+        },
+        {
+          "p": "A paid tool shows your \"official AI visibility score.\" How do you read it?",
+          "opcoes": [
+            "It's the number Google uses.",
+            "It's a sample from the tool itself; no third-party tool sees Google's internal systems.",
+            "It's the same as the Search Console report.",
+            "It's the average of Bing's citations."
+          ],
+          "certa": 1,
+          "explica": "Google's guide says so. Use it as a comparative sample, never as an official score.",
+          "ref": "simconversa"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "Foundation",
+          "texto": "AEO and GEO are well-done SEO, measured on a different dashboard."
+        },
+        {
+          "t": "What matters",
+          "texto": "Non-commodity content: your own data, direct experience, opinion with a reason."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "Google's AI guide (May 2026): no special file or schema; llms.txt is optional and cheap, not a citation lever."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "Google: guide to optimizing for generative AI (English)",
+          "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "icone": "lupa"
+        },
+        {
+          "t": "Google: AI features and your website (English)",
+          "href": "https://developers.google.com/search/docs/appearance/ai-features",
+          "icone": "lupa"
+        },
+        {
+          "t": "Google: spam policies, scaled content (English)",
+          "href": "https://developers.google.com/search/docs/essentials/spam-policies#scaled-content",
+          "icone": "escudo"
+        },
+        {
+          "t": "Ahrefs: llms.txt study (English)",
+          "href": "https://ahrefs.com/blog/llmstxt-study/",
+          "icone": "grafico"
+        },
+        {
+          "t": "Program Course 1: Foundation",
+          "href": "https://inematds.github.io/formacao-inemaseo-fundacao-v72/",
+          "icone": "camadas"
+        }
+      ]
+    }
+  ]
+}

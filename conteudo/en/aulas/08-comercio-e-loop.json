@@ -1,0 +1,376 @@
+{
+  "slug": "comercio-e-loop",
+  "num": 8,
+  "menu": "Loop",
+  "titulo": "Agent commerce and the monthly measurement loop",
+  "titulo_curto": "Commerce and the monthly loop",
+  "minutos": 18,
+  "lead": "Agents already fill in forms and compare products by reading the page the way a screen reader does. What helps is the basics done well: semantic HTML, labels, correct product data. And none of it counts without a routine: a monthly loop with the dashboards, the battery, the log and the score, always with a date.",
+  "objetivo": "make forms and product pages readable for agents and set up the monthly loop for measuring in the AIs, with dates.",
+  "competencias": [
+    "preparar-formulario-para-agente",
+    "manter-dados-de-produto",
+    "rodar-loop-mensal-de-ia"
+  ],
+  "aprende": [
+    {
+      "t": "What a browser agent reads: DOM, accessibility tree, screenshot"
+    },
+    {
+      "t": "A form with a label and autocomplete; a real button"
+    },
+    {
+      "t": "Merchant Center and Business Profile; commerce protocols just to follow along"
+    },
+    {
+      "t": "The monthly loop and your plan with dates"
+    }
+  ],
+  "hero_alt": "The owner of a leather goods store packs an online order next to the laptop.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "From a readable site to the month's loop",
+      "sub": "Click each block.",
+      "volta": "every month, with a date",
+      "nos": [
+        {
+          "icone": "robo",
+          "titulo": "How the agent reads",
+          "sub": "DOM, accessibility, screen",
+          "detalhe": "Google's guidance (web.dev) says browser agents read the DOM, the accessibility tree (the roles, names, and states of each element), and screenshots. What works for people who use a screen reader works for the agent."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Form and buttons",
+          "sub": "semantic and labeled",
+          "forte": true,
+          "detalhe": "Real buttons and links (button and a elements), not generic boxes with a click handler. Each field has a label tied to it with the for attribute. No transparent layer covering what can be clicked; a layout that doesn't jump while loading."
+        },
+        {
+          "icone": "camadas",
+          "titulo": "Product and location data",
+          "sub": "Merchant Center, Business Profile",
+          "detalhe": "Google's AI guide asks you to keep Merchant Center and your Google Business Profile up to date so you can appear in answers with products and places. Agent commerce protocols (UCP, which Google cites as emerging) are ones to watch, not for a small business to implement now."
+        },
+        {
+          "icone": "calendario",
+          "titulo": "Monthly loop",
+          "sub": "measure, fix, measure again",
+          "itens": [
+            {
+              "icone": "grafico",
+              "t": "dashboards: Search Console and Bing (lesson 2)"
+            },
+            {
+              "icone": "chat",
+              "t": "battery v1 by hand (lesson 3)"
+            },
+            {
+              "icone": "usuario",
+              "t": "brand questions (lesson 4)"
+            },
+            {
+              "icone": "pasta",
+              "t": "log by purpose (lesson 5)"
+            },
+            {
+              "icone": "check",
+              "t": "readiness score (lesson 6)"
+            }
+          ],
+          "detalhe": "Once a month, in the same week: fill in the spreadsheet, run the battery, read the log, run the score. Write down one decision only. If the appearance rate doesn't move in 3 months, look at the sources the AIs cite in your place: that's where your authority needs to exist."
+        }
+      ],
+      "legenda": "The basics made readable for agents, plus a routine with a date, are worth more than any shortcut."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Four tweaks that serve people and agents",
+      "sub": "Click each step. All of them come from web.dev's guide to agent-friendly sites.",
+      "passos": [
+        {
+          "titulo": "Real elements",
+          "sub": "semantics",
+          "texto": [
+            "An action is a button, navigation is a link. If you can't use the right element, give it the correct role and tabindex.",
+            "Use a hand cursor (cursor: pointer) on what can be clicked: it's a strong signal of an action."
+          ]
+        },
+        {
+          "titulo": "Linked labels",
+          "sub": "forms",
+          "texto": [
+            "Every field has a visible label tied to it with the for attribute. Email, name, and phone with autocomplete: it helps the person filling in the form and helps the agent know what each field is."
+          ]
+        },
+        {
+          "titulo": "Nothing hidden",
+          "sub": "stable screen",
+          "texto": [
+            "No transparent layers over buttons; action elements visible and at a minimum size. A layout that doesn't move around after loading: an agent that reads a screenshot gets lost."
+          ]
+        },
+        {
+          "titulo": "Product data",
+          "sub": "commerce",
+          "texto": [
+            "A correct Merchant Center feed, a clear return policy, and an up-to-date Business Profile. Follow agent commerce protocols without implementing them: sources still disagree about their status."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "A readable form and the loop sheet",
+      "sub": "The form is a template; the loop sheet is for copying every month.",
+      "blocos": [
+        {
+          "rot": "form · labels and autocomplete",
+          "icone": "terminal",
+          "conteudo": "<form action=\"/orcamento\" method=\"post\">\n  <label for=\"nome\">Name</label>\n  <input id=\"nome\" name=\"nome\" autocomplete=\"name\" required>\n\n  <label for=\"email\">Email</label>\n  <input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"email\" required>\n\n  <label for=\"telefone\">Phone</label>\n  <input id=\"telefone\" name=\"telefone\" type=\"tel\" autocomplete=\"tel\">\n\n  <button type=\"submit\">Request a quote</button>\n</form>"
+        },
+        {
+          "rot": "loop-ia-AAAA-MM.md",
+          "icone": "calendario",
+          "conteudo": "# Monthly AI loop — <month/year> (run on dd/mm/yyyy)\n\n1. Dashboards: GSC AI impressions <n> | Bing citations <n> | cited pages <n>\n2. Battery v1: appearance in the neutral questions by assistant: ChatGPT <x%> | Gemini <x%> | Perplexity <x%> | Copilot <x%>\n   Sources cited in my place (top 5): <...>\n3. Brand: \"what is [brand]\" correct in <n of 3> assistants; \"who is [founder]\" current in <n of 3>\n4. Log: search <n> | user action <n> | training <n> | false <n> | 403 for AI bot: <yes/no>\n5. Readiness score: <n> (tool and version)\n\nDecision of the month (just one): <...>\nNo change for 3 months? External sources to work on: <...>"
+        }
+      ],
+      "saida": {
+        "selo": "simulacao",
+        "abas": [
+          {
+            "rot": "What not to do",
+            "html": "<ul><li>A button made from a generic box with a JavaScript click handler, with no role or label.</li><li>A field whose label is only placeholder text inside it (it disappears when the person types).</li><li>Measuring once and stopping: without the next month, there's nothing to compare.</li></ul>"
+          },
+          {
+            "rot": "When the rate doesn't move",
+            "html": "<p>The AIV method suggests: after 3 months with no change in the battery, the lever is no longer your site's content but your presence where the AIs already look (the sources that show up in your place). Treat it as a hypothesis to test, with the loop measuring.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: readable and with a routine",
+      "sub": "E2 uses the generator at the end of the lesson.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · One form checked",
+          "min": "30 min",
+          "texto": "Pick the most important form on your site (contact, quote, order). In Chrome DevTools, check the accessibility tree: does each field have a name? Is the button a button? Fix whatever is missing.",
+          "pronto": "every form field appears by name in the accessibility tree, email, name, and phone have autocomplete, and submitting is a button."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · The scheduled loop",
+          "min": "20 min",
+          "texto": "Generate your plan below, download the .ics, and put the first monthly loop on your calendar. Copy the loop sheet into the project folder.",
+          "pronto": "the calendar has the date of the first monthly loop, and the month's loop-ia sheet exists with the date filled in."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "What does a browser agent use to understand a form?",
+          "opcoes": [
+            "Only robots.txt.",
+            "The DOM, the accessibility tree, and screenshots.",
+            "llms.txt.",
+            "The Search Console report."
+          ],
+          "certa": 1,
+          "explica": "That is what the web.dev guidance says. Labels and semantic elements show up in the accessibility tree.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "What should a small business do about agentic commerce protocols today?",
+          "opcoes": [
+            "Implement all of them now.",
+            "Keep watching; for now, a correct feed in Merchant Center and an updated Business Profile are what count.",
+            "Ignore Merchant Center.",
+            "Replace the site with an app."
+          ],
+          "certa": 1,
+          "explica": "Google cites UCP as emerging, and sources on the others disagree. The right win is correct product data.",
+          "ref": "passos"
+        },
+        {
+          "p": "The appearance rate in the battery has been flat for 3 months. Next step?",
+          "opcoes": [
+            "Change the battery questions.",
+            "Look at the sources the AIs cite in your place and work on your presence there, measuring in the loop.",
+            "Stop measuring.",
+            "Buy mentions."
+          ],
+          "certa": 1,
+          "explica": "The sources cited in your place show where authority needs to exist. A bought mention is inauthentic, and Google asks you to avoid it.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "Why does the loop have a date and one decision per month?",
+          "opcoes": [
+            "To pad out reports.",
+            "Because without a date there is no comparison, and one decision per month makes it clear what changed between one measurement and the next.",
+            "Because Google requires it.",
+            "To spend less."
+          ],
+          "certa": 1,
+          "explica": "A measurement without a date can't be compared; many changes at once don't tell you what worked.",
+          "ref": "codigo"
+        }
+      ]
+    },
+    {
+      "tipo": "mapa",
+      "titulo": "The course map",
+      "sub": "Four steps and the exercises for each. Click an exercise to see its \"done when\".",
+      "degraus": [
+        {
+          "aula": "aeo-geo-sem-mito",
+          "icone": "x",
+          "quando": "Week 1",
+          "titulo": "Separate",
+          "sub": "foundation × fad",
+          "saida": "Triage with sources and the passages only you have.",
+          "passo": "Before measuring, know what is worth doing."
+        },
+        {
+          "aula": "bateria-de-perguntas",
+          "icone": "grafico",
+          "quando": "Weeks 1 and 2",
+          "titulo": "Measure",
+          "sub": "dashboards and battery (lessons 2 and 3)",
+          "saida": "Baseline in the dashboards and the first round of the battery.",
+          "passo": "Requires the triage. The map shows the exercises from lesson 3; the plan below lists them all."
+        },
+        {
+          "aula": "colisao-de-nome",
+          "icone": "usuario",
+          "quando": "Week 3",
+          "titulo": "Fix",
+          "sub": "entity, log, and grade (lessons 4 to 6)",
+          "saida": "Identity fixed, bots checked, grade with one fix.",
+          "passo": "Requires the measurement: fixing without a baseline shows no effect."
+        },
+        {
+          "aula": "comercio-e-loop",
+          "icone": "robo",
+          "quando": "Week 4",
+          "titulo": "Prepare",
+          "sub": "agents and the loop (lessons 7 and 8)",
+          "saida": "WebMCP test page, readable form, scheduled loop.",
+          "passo": "Requires the rest. From here on, the monthly loop measures everything."
+        }
+      ],
+      "resultado": {
+        "titulo": "By the end of the course",
+        "texto": "Fundamentals separated from fads, official and hand measurement with dates, entity fixed, bots checked, and the site ready for agents.",
+        "total": "16 exercises"
+      },
+      "rolagem_fim": {
+        "titulo": "The whole course",
+        "texto": "Separate, measure, fix, and prepare. Only move up a step when the \"done when\" of the previous one is true."
+      },
+      "legenda": "After this course comes number 5: agents in the terminal doing the repetitive work, with gates."
+    },
+    {
+      "tipo": "gerador",
+      "titulo": "Generate your plan with dates",
+      "sub": "Pick your start date and how much time you have per week. The plan respects the exercises that require waiting days.",
+      "curso": "inemaSEO 4 · In the AIs",
+      "horas_padrao": 3,
+      "degraus": [
+        {
+          "titulo": "Lesson 1 · AEO and GEO without the myths",
+          "aula": "aeo-geo-sem-mito"
+        },
+        {
+          "titulo": "Lesson 2 · Official dashboards",
+          "aula": "paineis-oficiais"
+        },
+        {
+          "titulo": "Lesson 3 · Question battery",
+          "aula": "bateria-de-perguntas"
+        },
+        {
+          "titulo": "Lesson 4 · Name collision",
+          "aula": "colisao-de-nome"
+        },
+        {
+          "titulo": "Lesson 5 · Bing and bots in the log",
+          "aula": "bing-e-robos-no-log"
+        },
+        {
+          "titulo": "Lesson 6 · Readiness rubric",
+          "aula": "rubrica-readiness"
+        },
+        {
+          "titulo": "Lesson 7 · WebMCP",
+          "aula": "webmcp-preparacao"
+        },
+        {
+          "titulo": "Lesson 8 · Commerce and the loop",
+          "aula": "comercio-e-loop"
+        }
+      ],
+      "txt": {
+        "titulo": "Plan — inemaSEO 4 · In the AIs",
+        "inicio": "Start",
+        "ritmo": "Pace",
+        "termino": "Expected finish",
+        "ate": "by",
+        "pronto": "done when",
+        "semanas": "weeks",
+        "travou": "## What got stuck and what I decided",
+        "h": "h per week",
+        "exs": "exercises"
+      }
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "Readable by agents",
+          "texto": "Semantic elements, linked labels, nothing hidden, stable layout."
+        },
+        {
+          "t": "Commerce",
+          "texto": "Merchant Center and Business Profile updated; new protocols, just follow along."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "Monthly loop with a date: official dashboards, battery by hand, log, and score. No shortcuts, no third-party official score."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "web.dev: agent-friendly sites (English)",
+          "href": "https://web.dev/articles/ai-agent-site-ux",
+          "icone": "robo"
+        },
+        {
+          "t": "Google: AI optimization guide, Merchant Center, and Business Profile (English)",
+          "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "icone": "lupa"
+        },
+        {
+          "t": "Course 5 of the Program: With Agents",
+          "href": "https://inematds.github.io/formacao-inemaseo-agentes-v72/",
+          "icone": "terminal"
+        }
+      ]
+    }
+  ]
+}

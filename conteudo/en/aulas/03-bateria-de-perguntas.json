@@ -1,0 +1,266 @@
+{
+  "slug": "bateria-de-perguntas",
+  "num": 3,
+  "menu": "Battery",
+  "titulo": "Measure citations without an API: the frozen question battery",
+  "titulo_curto": "Measure citations without an API",
+  "minutos": 18,
+  "lead": "ChatGPT, Claude, Gemini, and Perplexity have no dashboard for the site owner. The honest way to measure is a repeated sample: the same questions, in the same AIs, every month, with a date. Because answers change with every run, you measure an appearance rate, not a snapshot.",
+  "objetivo": "build a battery of 20 frozen questions and run it by hand on 4 assistants, logging everything in a dated spreadsheet.",
+  "competencias": [
+    "montar-bateria-de-perguntas",
+    "medir-citacao-por-amostra",
+    "registrar-fontes-citadas"
+  ],
+  "aprende": [
+    {
+      "t": "Write neutral questions (without your brand) and branded ones"
+    },
+    {
+      "t": "Freeze the battery so the monthly comparison doesn't break"
+    },
+    {
+      "t": "Run it by hand, 3 times, and log brand, sources, and errors"
+    },
+    {
+      "t": "Why a local model and a paid tool don't replace this"
+    }
+  ],
+  "hero_alt": "An analyst checks off items on a paper list with a phone in hand, next to the laptop.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "From the question to the appearance rate",
+      "sub": "Click each block.",
+      "volta": "every month, the same questions",
+      "nos": [
+        {
+          "icone": "chat",
+          "titulo": "Questions",
+          "sub": "16 non-branded + 4 branded",
+          "detalhe": "Non-branded: what your audience asks without knowing you exist (\"where can I learn X in Portuguese?\", \"who does Y in my city?\"). Branded: \"what is [brand]?\", \"who is [founder]?\". A question with your brand in it doesn't measure discovery."
+        },
+        {
+          "icone": "cadeado",
+          "titulo": "Freeze",
+          "sub": "battery v1",
+          "detalhe": "After the first round, v1 doesn't change. A new question becomes v2, measured in parallel. If you swap questions, the next month is no longer comparable."
+        },
+        {
+          "icone": "usuario",
+          "titulo": "Run by hand",
+          "sub": "4 to 5 assistants, 3×",
+          "detalhe": "Each question, 3 times, in each assistant (ChatGPT, Gemini, Perplexity, Copilot, Claude), preferably in an incognito window or with no history. By hand, with your subscription or a free account: automating the interface may run into the terms of use, and an API gives different answers from what users see."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Spreadsheet",
+          "sub": "date, assistant, result",
+          "forte": true,
+          "detalhe": "One row per run: date, assistant, question id, run, your brand cited (yes / only in sources / no), who was cited instead, sources, factual errors."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Rate",
+          "sub": "% appearance",
+          "detalhe": "Main metric: % of non-branded runs where you appear (in the text or in the sources). The sources cited in your place are the map of where your authority needs to exist."
+        }
+      ],
+      "legenda": "A repeated, dated sample: that's what makes the number comparable month to month."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Set up and run",
+      "sub": "Tap each step.",
+      "passos": [
+        {
+          "titulo": "Write 20 questions",
+          "sub": "with the client",
+          "texto": [
+            "List the real questions with people who know the audience: the non-branded queries from Search Console, customer questions, the grounding queries from Bing (lesson 2).",
+            "Write the way a person would write to an AI, in a full sentence."
+          ]
+        },
+        {
+          "titulo": "Freeze it with a date",
+          "sub": "v1",
+          "texto": [
+            "Save the list as bateria-v1.md with the date and the rule \"this battery does not change.\" A new question goes into a v2."
+          ]
+        },
+        {
+          "titulo": "Run it 3 times",
+          "sub": "by hand",
+          "texto": [
+            "For each assistant, paste the question, read the answer and the sources, and fill in the row. Repeat 3 times: the answer changes, and that variation is what the rate absorbs.",
+            "With 20 questions, 4 assistants, and 3 runs, that's 240 rows. You can split it across days; what matters is recording the date."
+          ],
+          "exemplo": {
+            "rot": "A shortcut that doesn't work",
+            "texto": "Running the questions on a local model (Ollama). It doesn't have the search, the index, or the weights of the real AIs: it doesn't measure what they answer."
+          }
+        },
+        {
+          "titulo": "Calculate and compare",
+          "sub": "every month",
+          "texto": [
+            "% of appearance in the neutral questions per assistant, the 5 most-cited sources in your place, and the factual errors about you. Compare only with the same battery and the same assistants.",
+            "A new assistant becomes a new column; never swap one for another."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Battery and spreadsheet ready to copy",
+      "sub": "Swap the topic for yours. The example questions come from the real INEMA battery v1 (frozen on 07/10/2026).",
+      "blocos": [
+        {
+          "rot": "bateria-v1.md · template",
+          "icone": "arquivo",
+          "conteudo": "# Battery v1 — FROZEN (dd/mm/yyyy)\nRule: this battery does not change. A new question becomes v2, measured in parallel.\n16 neutral + 4 branded. 3 runs per question, per assistant.\n\n| id | type | question |\n|----|------|----------|\n| P01 | neutral | <who does/teaches [your topic] in Brazil?> |\n| P02 | neutral | <where can I learn/buy [your topic] in practice, in Portuguese?> |\n| P03 | neutral | <compare options for [your service] in [your city/country].> |\n| ... | neutral | ... (up to 16 neutral) |\n| P17 | brand | <what is [your brand]?> |\n| P18 | brand | <who is [founder]?> |\n| P19 | brand | <is [your brand] good for [goal]?> |\n| P20 | brand | <what is [your domain]?> |"
+        },
+        {
+          "rot": "Real example · INEMA battery v1 (excerpt)",
+          "icone": "lista",
+          "conteudo": "| P01 | neutral | Quem ensina agentes de IA no Brasil? |\n| P03 | neutral | Qual curso prático de Claude Code em português você recomenda? |\n| P05 | brand  | O que é INEMA? |\n| P06 | brand  | O que é INEMA.club? |\n| P07 | brand  | Quem é Nei Maldaner? |\n| P18 | neutral | Onde encontro cursos gratuitos de IA prática em português? |\n| P19 | neutral | Qual empresa ajuda a estruturar o conhecimento de um negócio para ser recomendado por IAs (AEO/GEO)? |"
+        },
+        {
+          "rot": "medicoes.csv · header and one row",
+          "icone": "lista",
+          "conteudo": "data;assistente;pergunta_id;execucao;marca_citada;citados_no_lugar;fontes;erros;resumo\n2026-11-03;perplexity;P01;1;nao;<concorrente A|concorrente B>;<site1|site2>;;<resposta em 1 linha>"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "What the July round showed",
+            "html": "<p>A single round on 07/10/2026, battery v1 with 20 questions: INEMA appeared in <b>0 of 48</b> neutral answers on Claude and <b>0 of 4</b> on Gemini (52 neutral measurements). ChatGPT and Perplexity were not measured.</p><p>\"O que é INEMA?\" got 4 of 4 answers about a different organization with the same name. That's the topic of lesson 4.</p>"
+          },
+          {
+            "rot": "Why this course does it by hand",
+            "html": "<p>The July round used an API, through a key authorized at that time. This course does not repeat that path: by hand, through the account you already use, no robot.</p><p>An answer from an API can differ from what a person sees in the app, and a paid \"share of voice\" tool is also a sample of prompts, not an official score.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: your battery v1",
+      "sub": "E2 takes a few hours; split it across days if you need to.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Frozen battery",
+          "min": "40 min",
+          "texto": "Write the 20 questions (16 neutral, 4 branded) for your topic, using the non-branded queries from Search Console and the grounding queries from lesson 2. Save it with the date and the freeze rule.",
+          "pronto": "bateria-v1.md exists, with a date, the \"does not change\" rule, 16 neutral questions without the brand, and 4 branded ones."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · First round",
+          "min": "3 h",
+          "dias": 7,
+          "texto": "Run the battery on 4 assistants, 3 times each, by hand, and fill in medicoes.csv. At the end, calculate the % of appearance in the neutral questions per assistant and list the 5 most-cited sources in your place.",
+          "pronto": "medicoes.csv has the rows from the round with date and assistant, and a summary with the % per assistant and the 5 most-cited sources."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "Why run each question 3 times?",
+          "opcoes": [
+            "To use up the quota.",
+            "Because an AI's answer varies with each run; you measure a rate, not a snapshot.",
+            "Because the first answer is always wrong.",
+            "To train the model."
+          ],
+          "certa": 1,
+          "explica": "Variation is expected. Three runs per question turn the result into a comparable appearance rate (%).",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "In the second month you want to swap 5 questions. What do you do?",
+          "opcoes": [
+            "Swap them in v1 itself.",
+            "Create a v2 and measure in parallel, keeping v1 intact.",
+            "Delete v1.",
+            "Swap them and recalculate the previous month."
+          ],
+          "certa": 1,
+          "explica": "The frozen battery is what lets you compare months. If you change the question, the comparison breaks.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "Does running the battery on a local model (Ollama) work for measuring citations?",
+          "opcoes": [
+            "Yes, it's the same as ChatGPT.",
+            "No: it doesn't have the search, the index, or the weights of the real AIs.",
+            "Yes, as long as it's in Portuguese.",
+            "Only for Gemini."
+          ],
+          "certa": 1,
+          "explica": "A local model can help organize answers you've already collected, but it doesn't tell you what the real AIs answer.",
+          "ref": "passos"
+        },
+        {
+          "p": "Which question is neutral?",
+          "opcoes": [
+            "\"What is [your brand]?\"",
+            "\"Is [your brand] good?\"",
+            "\"Where can I find free practical AI courses in Portuguese?\"",
+            "\"Who is the founder of [your brand]?\""
+          ],
+          "certa": 2,
+          "explica": "A neutral question is one without the brand: it measures whether the AI discovers you. The others measure identity (lesson 4).",
+          "ref": "codigo"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "Repeated sample",
+          "texto": "20 frozen questions, 4 to 5 assistants, 3 runs, every month, with a date."
+        },
+        {
+          "t": "What to look at",
+          "texto": "Appearance rate (%) on the neutral questions, sources cited in your place, and errors about you."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "Nobody has the official score from the AIs: a local model doesn't measure it, and a paid tool is a sample."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "AIV 2026: the F0–F4 method for AI visibility (guide)",
+          "href": "https://inematds.github.io/aiv2026/guia/",
+          "icone": "grafico"
+        },
+        {
+          "t": "Google: no tool sees the internal systems (English)",
+          "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "icone": "lupa"
+        },
+        {
+          "t": "Course 3 of the Program: Measurement and Routine",
+          "href": "https://inematds.github.io/formacao-inemaseo-medicao-v72/",
+          "icone": "calendario"
+        }
+      ]
+    }
+  ]
+}

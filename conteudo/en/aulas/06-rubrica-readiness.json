@@ -1,0 +1,261 @@
+{
+  "slug": "rubrica-readiness",
+  "num": 6,
+  "menu": "Rubric",
+  "titulo": "AI readiness rubric and its caveats",
+  "titulo_curto": "Readiness rubric",
+  "minutos": 17,
+  "lead": "An AI readiness score helps you find what's broken, as long as you know how it's calculated. No score is official: each scanner picks its own criteria and weights. Here you compare two open INEMA rubrics, read what weighs most, and learn what the score does not prove.",
+  "objetivo": "run an AI readiness score, read the criteria that weigh most, and know what the score does not prove.",
+  "competencias": [
+    "read-rubric-with-weights",
+    "prioritize-fix-by-weight",
+    "recognize-score-limits"
+  ],
+  "aprende": [
+    {
+      "t": "How WebMCP Readiness and agente-ready calculate the score"
+    },
+    {
+      "t": "The criteria that weigh most: bot access, content, entity"
+    },
+    {
+      "t": "The caveats: WebMCP weight, questions and answers, small sample"
+    },
+    {
+      "t": "Fix what weighs most and run it again"
+    }
+  ],
+  "hero_alt": "Inspector with a clipboard checks the entrance of a commercial building, with a ramp and a glass door.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "How a score is born",
+      "sub": "Click each block.",
+      "volta": "fix and run again",
+      "nos": [
+        {
+          "icone": "lupa",
+          "titulo": "Site",
+          "sub": "the delivered HTML",
+          "detalhe": "Both scanners read what the server delivers: robots.txt, sitemap, the home page, and a few pages. The agente-ready reads like a bot that doesn't run JavaScript."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Weighted criteria",
+          "sub": "editorial decision",
+          "forte": true,
+          "detalhe": "Each criterion has a weight. In agente-ready (v1.0.0, 10/19/2026) the weights are public in a file: bot access 30, extractable content 26, discovery 18, entity 14, WebMCP 8, forms 4. llms.txt weighs only 2."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Score",
+          "sub": "0 to 100",
+          "detalhe": "Points earned over the weights that apply to the site. A criterion that doesn't apply (a site with no forms, no languages) is left out of the calculation instead of counting as a failure."
+        },
+        {
+          "icone": "check",
+          "titulo": "Fix what weighs most",
+          "sub": "highest weight first",
+          "detalhe": "The list of failures sorted by weight is the plan: a search bot blocked at the CDN (12) is worth more than llms.txt (2)."
+        },
+        {
+          "icone": "x",
+          "titulo": "Caveats",
+          "sub": "what the score does not prove",
+          "detalhe": "A high score is not a citation. The weights are the choice of whoever made the rubric, and the sample is a few pages. Use it to find defects, never as a promise to the client."
+        }
+      ],
+      "legenda": "The score helps you prioritize fixes. Citations are measured in lessons 2 and 3."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "The two rubrics and the caveats",
+      "sub": "Click each tab.",
+      "passos": [
+        {
+          "titulo": "WebMCP Readiness",
+          "sub": "4 blocks",
+          "texto": [
+            "The INEMA scanner adds up four blocks: WebMCP 30%, SEO 30%, GEO 20%, and AEO 20%. Each finding is worth pass, warning, or fail; an informational-only finding is worth 0.7.",
+            "GEO looks at entity, substantial content (250+ words), authorship and date, sources, and semantic HTML. AEO looks at questions in headings, direct answers, lists, and tables."
+          ]
+        },
+        {
+          "titulo": "Caveat 1",
+          "sub": "WebMCP weight",
+          "texto": [
+            "In Readiness, a site without WebMCP gets a low overall score even with perfect SEO, because that block weighs 30%. WebMCP is a draft with no stable browser (lesson 7): read that block as preparation."
+          ]
+        },
+        {
+          "titulo": "Caveat 2",
+          "sub": "questions and answers",
+          "texto": [
+            "AEO criteria reward headings phrased as questions with a short answer right after. That is clarity for the reader, not an AI technique with a source behind it. And the FAQ rich result stopped showing in Google on 05/07/2026: FAQPage markup no longer gets you a showcase.",
+            "Don't create artificial questions just to score points."
+          ]
+        },
+        {
+          "titulo": "agente-ready",
+          "sub": "public weights",
+          "texto": [
+            "Open evolution of Readiness: weights in a versioned file, with the reason and source for each criterion; WebMCP weighs 8 out of 100; llms.txt weighs 2.",
+            "Limits: sample of home + 4 pages, CDN test by User-Agent only, WebMCP detected only in static code."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Run it and read the score",
+      "sub": "agente-ready only reads public pages, with no API (detailed in course 7). WebMCP Readiness (webmcp.inema.pro) opens the page in a disposable browser and goes deeper only on the URL you provide.",
+      "blocos": [
+        {
+          "rot": "agente-ready (inemaseo-sistemas, MIT)",
+          "icone": "terminal",
+          "conteudo": "git clone https://github.com/inematds/inemaseo-sistemas && cd inemaseo-sistemas/ferramentas/agente-ready\npython3 agente-ready.py https://seusite.com --saida saida/seusite\n# output: relatorio.html, agente-ready.json and criterios.csv\n# the weights live in pesos.json: disagree, change them and run again"
+        },
+        {
+          "rot": "notas.md · log",
+          "icone": "lista",
+          "conteudo": "# AI readiness — <seusite.com>\n| date | tool and version | score | 3 heaviest failures | fixed |\n|---|---|---|---|---|\n| dd/mm/yyyy | agente-ready 1.0.0 | <n> | <failure 1 (weight)>, <failure 2>, <failure 3> | <which> |"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Real scores (10/19/2026)",
+            "html": "<p>agente-ready 1.0.0 on INEMA sites, home + 4 pages:</p><pre>site                         nota  entidade  conteudo  descoberta  webmcp\ninema.club                   93    86        81        100         100\nnews.inema.pro               72    0         71        100         29\neventos.inema.pro            69    0         62        100         29\nguia REA (github.io)         54    0         62        17          29</pre>"
+          },
+          {
+            "rot": "How to read it",
+            "html": "<ul><li><b>inema.club</b>: loses points only for the About/Contact link on the home page and for partial authorship and date.</li><li><b>news</b> and <b>eventos</b>: entity scores zero (no Organization/Person with @id on the home page); this is the heaviest fix.</li><li><b>guia REA</b>: no sitemap, no lastmod and no canonical; discovery drops to 17.</li><li>Bot access: 100 on all four.</li></ul>"
+          },
+          {
+            "rot": "What the score doesn't tell you",
+            "html": "<p>None of these scores tells you whether the site is cited. inema.club at 93 and the July measurement of 0 out of 52 neutral citations coexist: readiness is a condition, citation is a result.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Practice: your site's score",
+      "sub": "It can be your own site or a client's who gave permission.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Score and 3 failures",
+          "min": "20 min",
+          "texto": "Run agente-ready (or WebMCP Readiness) on the site and write down the score, the tool with its version, and the 3 heaviest failures.",
+          "pronto": "notas.md has the row with date, tool and version, score, and the 3 failures with the weight of each."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · One measured fix",
+          "min": "40 min",
+          "dias": 2,
+          "texto": "Fix the heaviest failure within your reach (for example, the entity on the home page), publish, and run it again.",
+          "pronto": "notas.md has the second row with the new score and the fixed criterion marked as ok."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Test what you learned",
+      "sub": "The explanation appears after your answer.",
+      "perguntas": [
+        {
+          "p": "The site has flawless SEO and a low overall score in WebMCP Readiness. What is the likely explanation?",
+          "opcoes": [
+            "The SEO is wrong.",
+            "The WebMCP block weighs 30% of the score and the site has no WebMCP.",
+            "Google demoted the site.",
+            "llms.txt is missing."
+          ],
+          "certa": 1,
+          "explica": "This is the main caveat of this rubric. Read the WebMCP block as preparation, not as an SEO flaw.",
+          "ref": "passos",
+          "cert": true
+        },
+        {
+          "p": "In agente-ready, which fix comes first?",
+          "opcoes": [
+            "Publish llms.txt (weight 2).",
+            "Allow AI search bots through the CDN (weight 12).",
+            "Change the site's color.",
+            "Add more questions to the headings."
+          ],
+          "certa": 1,
+          "explica": "The order follows the weight. A blocked search bot takes the site out of the answers; llms.txt is optional.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "inema.club scores 93. What does that prove about citation in the AIs?",
+          "opcoes": [
+            "That it is cited in 93% of answers.",
+            "Nothing: readiness is a condition; citation is measured in the dashboards and in the question battery.",
+            "That it's in Google's top 10.",
+            "That ChatGPT reads the site every day."
+          ],
+          "certa": 1,
+          "explica": "A rubric score doesn't measure AI answers. That's why lessons 2 and 3 exist.",
+          "ref": "codigo"
+        },
+        {
+          "p": "The rubric rewards headings written as questions. How do you use that?",
+          "opcoes": [
+            "Turn every heading into a question.",
+            "Use a question when it's a real doubt your audience has, for clarity, without creating questions just to score points.",
+            "Ignore headings.",
+            "Mark up everything with FAQPage to get a showcase."
+          ],
+          "certa": 1,
+          "explica": "A real question with a direct answer helps the reader. And the FAQ rich result ended on 05/07/2026.",
+          "ref": "passos"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Takeaway",
+      "itens": [
+        {
+          "t": "A score is a rubric",
+          "texto": "Each scanner picks its own criteria and weights; prefer public weights."
+        },
+        {
+          "t": "Prioritize by weight",
+          "texto": "Bot access, content in the HTML, and entity come before details."
+        },
+        {
+          "t": "2026 yardstick",
+          "texto": "A high score is not a citation. WebMCP and questions in headings are preparation and clarity, not a ranking factor."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Go further",
+      "links": [
+        {
+          "t": "WebMCP Readiness (INEMA scanner)",
+          "href": "https://webmcp.inema.pro/",
+          "icone": "lupa"
+        },
+        {
+          "t": "inemaseo-sistemas: agente-ready and pesos.json (MIT)",
+          "href": "https://github.com/inematds/inemaseo-sistemas",
+          "icone": "git"
+        },
+        {
+          "t": "Google: create helpful content (English)",
+          "href": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+          "icone": "caneta"
+        }
+      ]
+    }
+  ]
+}

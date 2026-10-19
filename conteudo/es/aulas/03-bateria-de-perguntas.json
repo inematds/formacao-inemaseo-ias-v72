@@ -1,0 +1,266 @@
+{
+  "slug": "bateria-de-perguntas",
+  "num": 3,
+  "menu": "Batería",
+  "titulo": "Medir citas sin API: la batería de preguntas congeladas",
+  "titulo_curto": "Medir citas sin API",
+  "minutos": 18,
+  "lead": "ChatGPT, Claude, Gemini y Perplexity no tienen un panel para el dueño del sitio. La forma honesta de medir es una muestra repetida: las mismas preguntas, en las mismas IAs, todos los meses, con fecha. Como las respuestas varían en cada ejecución, mides una tasa de aparición, no una foto.",
+  "objetivo": "armar una batería de 20 preguntas congeladas y ejecutarla a mano en 4 asistentes, registrando todo en una hoja de cálculo con fecha.",
+  "competencias": [
+    "montar-bateria-de-perguntas",
+    "medir-citacao-por-amostra",
+    "registrar-fontes-citadas"
+  ],
+  "aprende": [
+    {
+      "t": "Escribir preguntas neutras (sin tu marca) y de marca"
+    },
+    {
+      "t": "Congelar la batería para que la comparación mensual no se rompa"
+    },
+    {
+      "t": "Ejecutar a mano, 3 veces, y registrar marca, fuentes y errores"
+    },
+    {
+      "t": "Por qué un modelo local y una herramienta de pago no sustituyen esto"
+    }
+  ],
+  "hero_alt": "Analista marca ítems en una lista en papel con el celular en la mano, junto a la laptop.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "De la pregunta a la tasa de aparición",
+      "sub": "Haz clic en cada bloque.",
+      "volta": "todos los meses, las mismas preguntas",
+      "nos": [
+        {
+          "icone": "chat",
+          "titulo": "Preguntas",
+          "sub": "16 neutras + 4 de marca",
+          "detalhe": "Neutras: lo que tu público pregunta sin saber que existes (\"¿dónde aprender X en español?\", \"¿quién hace Y en mi ciudad?\"). De marca: \"¿qué es [marca]?\", \"¿quién es [fundador]?\". Una pregunta con la marca dentro no mide descubrimiento."
+        },
+        {
+          "icone": "cadeado",
+          "titulo": "Congelar",
+          "sub": "batería v1",
+          "detalhe": "Después de la primera ronda, la v1 no cambia. Una pregunta nueva pasa a ser v2, medida en paralelo. Si cambias las preguntas, el mes siguiente deja de ser comparable."
+        },
+        {
+          "icone": "usuario",
+          "titulo": "Ejecutar a mano",
+          "sub": "4 a 5 asistentes, 3×",
+          "detalhe": "Cada pregunta, 3 veces, en cada asistente (ChatGPT, Gemini, Perplexity, Copilot, Claude), de preferencia en ventana de incógnito o sin historial. A mano, con tu suscripción o cuenta gratuita: automatizar la interfaz puede chocar con los términos de uso, y la API da respuestas distintas de las que ve el usuario."
+        },
+        {
+          "icone": "lista",
+          "titulo": "Hoja de cálculo",
+          "sub": "fecha, asistente, resultado",
+          "forte": true,
+          "detalhe": "Una fila por ejecución: fecha, asistente, id de la pregunta, ejecución, tu marca citada (sí / solo en la fuente / no), quién fue citado en tu lugar, fuentes, errores factuales."
+        },
+        {
+          "icone": "grafico",
+          "titulo": "Tasa",
+          "sub": "% de aparición",
+          "detalhe": "Métrica principal: % de las ejecuciones neutras en las que apareces (en el texto o en las fuentes). Las fuentes citadas en tu lugar son el mapa de dónde tu autoridad necesita existir."
+        }
+      ],
+      "legenda": "Muestra repetida con fecha: eso es lo que hace que el número sea comparable mes a mes."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Montar y ejecutar",
+      "sub": "Haz clic en cada paso.",
+      "passos": [
+        {
+          "titulo": "Escribir 20 preguntas",
+          "sub": "con el cliente",
+          "texto": [
+            "Haz una lista, con quien conoce al público, de las dudas reales: las consultas sin marca de Search Console, las preguntas de clientes, las grounding queries de Bing (clase 2).",
+            "Escribe como lo haría una persona al hablar con una IA, en frase completa."
+          ]
+        },
+        {
+          "titulo": "Congelar con fecha",
+          "sub": "v1",
+          "texto": [
+            "Guarda la lista como bateria-v1.md con la fecha y la regla \"esta batería no cambia\". Una pregunta nueva entra en una v2."
+          ]
+        },
+        {
+          "titulo": "Ejecutar 3 veces",
+          "sub": "a mano",
+          "texto": [
+            "Para cada asistente, pega la pregunta, lee la respuesta y las fuentes, y completa la fila. Repite 3 veces: la respuesta cambia, y esa variación es la que absorbe la tasa.",
+            "Con 20 preguntas, 4 asistentes y 3 ejecuciones son 240 filas. Se puede repartir en varios días; lo que importa es registrar la fecha."
+          ],
+          "exemplo": {
+            "rot": "Atajo que no sirve",
+            "texto": "Ejecutar las preguntas en un modelo local (Ollama). No tiene la búsqueda, el índice ni los pesos de las IAs reales: no mide lo que ellas responden."
+          }
+        },
+        {
+          "titulo": "Calcular y comparar",
+          "sub": "todos los meses",
+          "texto": [
+            "% de aparición en las neutras por asistente, las 5 fuentes más citadas en tu lugar y los errores factuales sobre ti. Compara solo con la misma batería y los mismos asistentes.",
+            "Un asistente nuevo se vuelve una columna nueva; nunca reemplaces uno por otro."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Batería y planilla listas para copiar",
+      "sub": "Cambia el tema por el tuyo. El ejemplo de preguntas es de la batería v1 real de INEMA (congelada el 10/07/2026).",
+      "blocos": [
+        {
+          "rot": "bateria-v1.md · modelo",
+          "icone": "arquivo",
+          "conteudo": "# Batería v1 — CONGELADA (dd/mm/aaaa)\nRegla: esta batería no cambia. Una pregunta nueva pasa a v2, medida en paralelo.\n16 neutras + 4 de marca. 3 ejecuciones por pregunta, por asistente.\n\n| id | tipo | pregunta |\n|----|------|----------|\n| P01 | neutro | <¿quién hace/enseña [tu tema] en Brasil?> |\n| P02 | neutro | <¿dónde puedo aprender/comprar [tu tema] en la práctica, en español?> |\n| P03 | neutro | <compara opciones de [tu servicio] en [tu ciudad/país].> |\n| ... | neutro | ... (hasta 16 neutras) |\n| P17 | marca | <¿qué es [tu marca]?> |\n| P18 | marca | <¿quién es [fundador]?> |\n| P19 | marca | <¿[tu marca] es buena para [objetivo]?> |\n| P20 | marca | <¿qué es [tu dominio]?> |"
+        },
+        {
+          "rot": "Ejemplo real · batería v1 de INEMA (fragmento)",
+          "icone": "lista",
+          "conteudo": "| P01 | neutro | ¿Quién enseña agentes de IA en Brasil? |\n| P03 | neutro | ¿Qué curso práctico de Claude Code en portugués recomiendas? |\n| P05 | marca  | ¿Qué es INEMA? |\n| P06 | marca  | ¿Qué es INEMA.club? |\n| P07 | marca  | ¿Quién es Nei Maldaner? |\n| P18 | neutro | ¿Dónde encuentro cursos gratuitos de IA práctica en portugués? |\n| P19 | neutro | ¿Qué empresa ayuda a estructurar el conocimiento de un negocio para que lo recomienden las IAs (AEO/GEO)? |"
+        },
+        {
+          "rot": "medicoes.csv · encabezado y una fila",
+          "icone": "lista",
+          "conteudo": "data;assistente;pergunta_id;execucao;marca_citada;citados_no_lugar;fontes;erros;resumo\n2026-11-03;perplexity;P01;1;nao;<concorrente A|concorrente B>;<site1|site2>;;<respuesta en 1 línea>"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Lo que mostró la ronda de julio",
+            "html": "<p>Ronda única el 10/07/2026, batería v1 con 20 preguntas: INEMA apareció en <b>0 de 48</b> respuestas neutras en Claude y <b>0 de 4</b> en Gemini (52 mediciones neutras). ChatGPT y Perplexity no se midieron.</p><p>\"¿Qué es INEMA?\" tuvo 4 de 4 respuestas sobre otro organismo con el mismo nombre. Es el tema de la clase 4.</p>"
+          },
+          {
+            "rot": "Por qué este curso lo hace a mano",
+            "html": "<p>La ronda de julio usó API, con una clave autorizada en aquel momento. Este curso no repite ese camino: a mano, desde la cuenta que ya usas, sin robot.</p><p>Una respuesta por API puede diferir de la que la persona ve en la aplicación, y una herramienta de pago de \"share of voice\" también es una muestra de prompts, no una nota oficial.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Práctica: tu batería v1",
+      "sub": "El E2 lleva algunas horas; divídelo en días si lo necesitas.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Batería congelada",
+          "min": "40 min",
+          "texto": "Escribe las 20 preguntas (16 neutras, 4 de marca) de tu tema, usando las consultas sin marca de Search Console y las grounding queries de la clase 2. Guarda con la fecha y la regla de congelamiento.",
+          "pronto": "bateria-v1.md existe, con fecha, la regla \"no cambia\", 16 preguntas neutras sin la marca y 4 de marca."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Primera ronda",
+          "min": "3 h",
+          "dias": 7,
+          "texto": "Ejecuta la batería en 4 asistentes, 3 veces cada uno, a mano, y completa medicoes.csv. Al final, calcula el % de aparición en las neutras por asistente y enumera las 5 fuentes más citadas en tu lugar.",
+          "pronto": "medicoes.csv tiene las filas de la ronda con fecha y asistente, y un resumen con el % por asistente y las 5 fuentes más citadas."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Prueba lo que aprendiste",
+      "sub": "La explicación aparece después de tu respuesta.",
+      "perguntas": [
+        {
+          "p": "¿Por qué ejecutar cada pregunta 3 veces?",
+          "opcoes": [
+            "Para gastar la cuota.",
+            "Porque la respuesta de una IA varía en cada ejecución; se mide una tasa, no una foto.",
+            "Porque la primera respuesta siempre se equivoca.",
+            "Para entrenar el modelo."
+          ],
+          "certa": 1,
+          "explica": "La variación es esperada. Tres ejecuciones por pregunta convierten el resultado en un % de aparición comparable.",
+          "ref": "diagrama",
+          "cert": true
+        },
+        {
+          "p": "En el segundo mes quieres cambiar 5 preguntas. ¿Qué haces?",
+          "opcoes": [
+            "Cambiarlas en la v1 mismo.",
+            "Crear una v2 y medir en paralelo, manteniendo la v1 intacta.",
+            "Borrar la v1.",
+            "Cambiarlas y recalcular el mes anterior."
+          ],
+          "certa": 1,
+          "explica": "La batería congelada es lo que permite comparar meses. Si cambia la pregunta, la comparación se rompe.",
+          "ref": "diagrama"
+        },
+        {
+          "p": "¿Correr la batería en un modelo local (Ollama) sirve para medir citación?",
+          "opcoes": [
+            "Sí, es igual a ChatGPT.",
+            "No: no tiene la búsqueda, el índice ni los pesos de las IAs reales.",
+            "Sí, siempre que sea en español.",
+            "Solo para Gemini."
+          ],
+          "certa": 1,
+          "explica": "Un modelo local puede ayudar a organizar respuestas ya recolectadas, pero no dice qué responden las IAs reales.",
+          "ref": "passos"
+        },
+        {
+          "p": "¿Cuál pregunta es neutra?",
+          "opcoes": [
+            "\"¿Qué es [tu marca]?\"",
+            "\"¿[Tu marca] es buena?\"",
+            "\"¿Dónde encuentro cursos gratuitos de IA práctica en español?\"",
+            "\"¿Quién es el fundador de [tu marca]?\""
+          ],
+          "certa": 2,
+          "explica": "Neutra es la pregunta sin la marca: mide si la IA te descubre. Las otras miden identidad (clase 4).",
+          "ref": "codigo"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para llevar",
+      "itens": [
+        {
+          "t": "Muestra repetida",
+          "texto": "20 preguntas congeladas, 4 a 5 asistentes, 3 ejecuciones, todos los meses, con fecha."
+        },
+        {
+          "t": "Qué mirar",
+          "texto": "% de aparición en las neutras, fuentes citadas en tu lugar y errores sobre ti."
+        },
+        {
+          "t": "La vara de 2026",
+          "texto": "Nadie tiene la nota oficial de las IAs: un modelo local no mide, una herramienta de pago es una muestra."
+        }
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir más allá",
+      "links": [
+        {
+          "t": "AIV 2026: el método F0–F4 de visibilidad en IA (guía)",
+          "href": "https://inematds.github.io/aiv2026/guia/",
+          "icone": "grafico"
+        },
+        {
+          "t": "Google: ninguna herramienta ve los sistemas internos (inglés)",
+          "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "icone": "lupa"
+        },
+        {
+          "t": "Curso 3 de la Formación: Medición y Rutina",
+          "href": "https://inematds.github.io/formacao-inemaseo-medicao-v72/",
+          "icone": "calendario"
+        }
+      ]
+    }
+  ]
+}

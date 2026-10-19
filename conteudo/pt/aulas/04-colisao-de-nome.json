@@ -1,0 +1,122 @@
+{
+  "slug": "colisao-de-nome",
+  "num": 4,
+  "menu": "Entidade",
+  "titulo": "Colisão de nome e entidade desatualizada nas IAs",
+  "titulo_curto": "Colisão de nome e entidade",
+  "minutos": 18,
+  "lead": "Às vezes a IA até responde sobre você, mas sobre o você errado: outra empresa com o mesmo nome, ou a sua história de dez anos atrás. As perguntas de marca da bateria mostram isso. A correção é deixar claro, em texto e em dado estruturado, quem você é, e dar às IAs fichas com fonte para citar.",
+  "objetivo": "diagnosticar colisão de nome e bio desatualizada nas IAs e montar o catálogo de fichas que corrige a sua entidade.",
+  "competencias": ["diagnosticar-colisao-de-nome", "publicar-entidade-com-sameas", "montar-catalogo-de-conhecimento"],
+  "aprende": [
+    {"t": "Ler as respostas de marca da bateria como diagnóstico de identidade"},
+    {"t": "Página de desambiguação e o nome completo da marca"},
+    {"t": "Person e Organization com @id fixo e sameAs"},
+    {"t": "O catálogo de fichas com fonte, status e data"}
+  ],
+  "hero_alt": "Carteiro olha uma carta na mão diante de duas caixas de correio iguais, em dúvida sobre qual é a certa.",
+  "secoes": [
+    {
+      "tipo": "diagrama",
+      "titulo": "Do erro de identidade à correção medida",
+      "sub": "Clique em cada bloco.",
+      "volta": "remedir as perguntas de marca no mês seguinte",
+      "nos": [
+        {"icone": "chat", "titulo": "Pergunta de marca", "sub": "P05–P08 da bateria",
+         "detalhe": "\"O que é [marca]?\", \"quem é [fundador]?\". Elas não medem descoberta; medem se a IA sabe quem você é."},
+        {"icone": "x", "titulo": "Resposta errada", "sub": "colisão ou bio velha",
+         "itens": [{"icone": "camadas", "t": "colisão: outro dono do mesmo nome"}, {"icone": "relogio", "t": "bio desatualizada"}],
+         "detalhe": "Colisão: o nome curto pertence a alguém com mais autoridade (um órgão público, uma marca antiga). Bio desatualizada: a IA repete a trajetória que está nas fontes antigas e ignora a atual."},
+        {"icone": "usuario", "titulo": "Entidade clara", "sub": "texto + dado estruturado", "forte": true,
+         "detalhe": "Nome completo da marca sempre igual; uma página que diz quem é e quem não é (desambiguação); página do fundador ligando a trajetória antiga à atual; Person e Organization com @id fixo e sameAs para os perfis oficiais."},
+        {"icone": "arquivo", "titulo": "Catálogo", "sub": "fichas com fonte",
+         "detalhe": "Fichas curtas por tipo (institucional, produto, perguntas frequentes reais, casos), cada uma com resumo de 1 a 2 frases, fonte, status e data. O que não tem confirmação fica PENDENTE e não vai ao ar."}
+      ],
+      "legenda": "Diagnóstico pela bateria, correção no site, conferência na bateria do mês seguinte."
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Corrigir em quatro passos",
+      "sub": "Clique em cada passo.",
+      "passos": [
+        {"titulo": "Ler as respostas de marca", "sub": "diagnóstico",
+         "texto": ["Na planilha da aula 3, filtre as perguntas de marca. Anote: a IA falou de você ou de outro? A descrição está atual? Que fontes usou?", "As fontes erradas mostram de onde vem a confusão."],
+         "exemplo": {"rot": "No INEMA (10/07/2026)", "texto": "\"O que é INEMA?\" teve 4 de 4 respostas sobre o INEMA-BA, órgão ambiental. \"Quem é Nei Maldaner?\" trouxe a bio antiga de empresário de TI, sem IA. Já \"O que é INEMA.club?\" foi respondida certo."}},
+        {"titulo": "Nome completo e desambiguação", "sub": "texto visível",
+         "texto": ["Se o nome curto colide, use sempre o nome completo (no INEMA: INEMA.club) e publique uma página que diga quem você é e com quem não deve ser confundido.", "Na página do fundador, ligue a trajetória antiga à atual, em texto: é o texto que a IA lê."]},
+        {"titulo": "Entidade no JSON-LD", "sub": "@id e sameAs",
+         "texto": ["Person e Organization com @id fixo em todas as páginas e sameAs para os perfis que você controla (GitHub, YouTube, LinkedIn). O curso 2, aula 1, ensina em detalhe.", "O dado estruturado tem de bater com o texto visível."]},
+        {"titulo": "Catálogo de fichas", "sub": "fonte única",
+         "texto": ["Escreva fichas curtas a partir das perguntas da bateria: são perguntas com demanda comprovada. Cada ficha com fonte real; sem confirmação, marque PENDENTE.", "No INEMA, depois da rodada de julho, foram publicadas 54 fichas em /conhecimento/."]}
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ficha e entidade para copiar",
+      "sub": "A ficha segue o formato do catálogo do método AIV (MIT). O JSON-LD vai no head de todas as páginas.",
+      "blocos": [
+        {"rot": "catalogo/institucional/quem-somos.md", "icone": "arquivo",
+         "conteudo": "---\nslug: quem-somos\ntipo: institucional\ntitulo: O que é a <Marca Completa>\nresumo: <Marca Completa> é <o que é, para quem> desde <ano>. Não confundir com <homônimo>, que <o que o outro é>.\nstatus: revisado\nfonte: <URL ou documento que comprova>\nconfianca: alta\natualizado_em: dd/mm/aaaa\nrelacionados: [quem-e-fundador, servicos]\n---\n\n<Resposta direta em 1 parágrafo, com dado que só você tem.>\n\n## PENDENTE\n- <o que ainda falta confirmar: não vai ao ar>"},
+        {"rot": "JSON-LD · entidade com @id e sameAs", "icone": "terminal",
+         "conteudo": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\"@type\": \"Organization\", \"@id\": \"https://www.seusite.com/#organization\",\n     \"name\": \"<Marca Completa>\", \"url\": \"https://www.seusite.com/\",\n     \"founder\": {\"@id\": \"https://www.seusite.com/#fundador\"},\n     \"sameAs\": [\"https://github.com/<perfil>\", \"https://www.youtube.com/@<canal>\"]},\n    {\"@type\": \"Person\", \"@id\": \"https://www.seusite.com/#fundador\",\n     \"name\": \"<Nome Sobrenome>\", \"url\": \"https://www.seusite.com/quem-e-<nome>/\",\n     \"sameAs\": [\"https://www.linkedin.com/in/<perfil>\"]}\n  ]\n}\n</script>"}
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {"rot": "No INEMA", "html": "<p>Entidade <code>Person #nei</code> e <code>Organization #organization</code> publicada em todas as páginas do portal em 24/09/2026. Catálogo de 54 fichas publicado em <code>/conhecimento/</code> depois da medição de julho.</p><p>A próxima rodada da bateria é que diz se a identidade mudou nas IAs: sem remedir, é só esperança.</p>"},
+          {"rot": "Regras do catálogo", "html": "<ul><li>Nunca inventar dado: sem fonte, PENDENTE.</li><li>Ficha pública nunca sai com PENDENTE.</li><li>Lacuna honesta é melhor que ficha inventada: se a pergunta pede algo que você não oferece, a ficha diz isso.</li><li>Pergunte cedo ao dono o que ele vende de verdade e o que é gratuito: muda o texto de tudo.</li></ul>"}
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: a sua entidade",
+      "sub": "Use as perguntas de marca da sua bateria.",
+      "exercicios": [
+        {"id": "e1", "titulo": "E1 · Diagnóstico de identidade", "min": "30 min",
+         "texto": "Pergunte \"o que é [sua marca]?\" e \"quem é [fundador ou responsável]?\" em 3 assistentes. Anote para cada resposta: falou de você ou de outro, está atual, quais fontes usou.",
+         "pronto": "uma tabela com 6 respostas (2 perguntas × 3 assistentes), cada uma com \"certo / colisão / desatualizado\" e as fontes citadas."},
+        {"id": "e2", "titulo": "E2 · Cinco fichas com fonte", "min": "45 min",
+         "texto": "Escreva 5 fichas no formato do modelo: quem somos (com desambiguação, se houver colisão), o fundador e 3 respostas a perguntas da sua bateria. Cada uma com fonte e data.",
+         "pronto": "5 arquivos .md com todos os campos do front matter preenchidos, nenhum dado sem fonte fora da seção PENDENTE."}
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {"p": "\"O que é [marca]?\" volta descrevendo um órgão público de mesmo nome. Qual a primeira correção?",
+         "opcoes": ["Mudar o nome da empresa.", "Usar sempre o nome completo da marca e publicar uma página de desambiguação.", "Comprar anúncio.", "Bloquear os robôs de IA."],
+         "certa": 1, "explica": "O nome curto pode nunca ser seu. Nome completo consistente e uma página que diz quem você é (e quem não é) dão às IAs o que citar.", "ref": "passos", "cert": true},
+        {"p": "Para que serve o sameAs no JSON-LD?",
+         "opcoes": ["Para ranquear mais alto.", "Para ligar a entidade aos perfis oficiais dela (GitHub, YouTube, LinkedIn).", "Para esconder perfis antigos.", "Para traduzir o site."],
+         "certa": 1, "explica": "Liga a mesma entidade entre páginas e perfis. Precisa bater com o que está escrito no site.", "ref": "codigo"},
+        {"p": "Uma ficha do catálogo tem um preço que o dono ainda não confirmou. O que fazer?",
+         "opcoes": ["Publicar um preço estimado.", "Deixar o preço na seção PENDENTE, que não vai ao ar.", "Copiar o preço do concorrente.", "Pedir para a IA sugerir."],
+         "certa": 1, "explica": "Nada sem fonte vai ao ar. Informação inventada no catálogo vira resposta errada da IA sobre você.", "ref": "codigo"},
+        {"p": "Como saber se a correção funcionou?",
+         "opcoes": ["Olhando o número de páginas publicadas.", "Remedindo as perguntas de marca da bateria no mês seguinte.", "Perguntando uma vez ao ChatGPT.", "Pelo relatório de Desempenho do Search Console."],
+         "certa": 1, "explica": "Mesmas perguntas, mesmos assistentes, 3 execuções: só a comparação com a rodada anterior mostra mudança.", "ref": "diagrama"}
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Para levar",
+      "itens": [
+        {"t": "Diagnóstico", "texto": "As perguntas de marca da bateria mostram colisão de nome e bio desatualizada."},
+        {"t": "Correção", "texto": "Nome completo, desambiguação, Person e Organization com @id e sameAs, catálogo com fonte."},
+        {"t": "Régua de 2026", "texto": "Não há schema especial para IA: o dado estruturado só ajuda quando bate com o texto visível."}
+      ]
+    },
+    {
+      "tipo": "links",
+      "titulo": "Para ir além",
+      "links": [
+        {"t": "Google: dados estruturados de Organization (inglês)", "href": "https://developers.google.com/search/docs/appearance/structured-data/organization", "icone": "lupa"},
+        {"t": "Curso 2 da Formação: Conteúdo (entidade em detalhe)", "href": "https://inematds.github.io/formacao-inemaseo-conteudo-v72/", "icone": "caneta"},
+        {"t": "AIV 2026: catálogo de conhecimento (guia)", "href": "https://inematds.github.io/aiv2026/guia/", "icone": "arquivo"}
+      ]
+    }
+  ]
+}
