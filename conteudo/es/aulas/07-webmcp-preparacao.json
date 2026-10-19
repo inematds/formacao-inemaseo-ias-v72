@@ -131,7 +131,7 @@
         {
           "rot": "horarios.html · página de prueba",
           "icone": "terminal",
-          "conteudo": "<section id=\"horarios\">\n  <h1>Horario de atención</h1>\n  <p>Lunes a viernes, 8h a 18h. Sábado, 8h a 12h. Domingo, cerrado.</p>\n</section>\n<p id=\"aviso-agente\" hidden>Este navegador no ofrece herramientas a agentes. La información de arriba vale igual.</p>\n<script>\n  const horarios = { semana: \"08:00-18:00\", sabado: \"08:00-12:00\", domingo: \"fechado\" };\n  const controle = new AbortController(); // controle.abort() tira a ferramenta\n  if (\"modelContext\" in document) {\n    document.modelContext.registerTool({\n      name: \"consultar_horarios\",\n      title: \"Consultar horário de atendimento\",\n      description: \"Devolve o horário de atendimento da loja para o dia pedido. Só leitura: não agenda nada.\",\n      inputSchema: {\n        type: \"object\",\n        properties: {\n          dia: { type: \"string\", enum: [\"semana\", \"sabado\", \"domingo\"], description: \"Dia a consultar\" }\n        },\n        required: [\"dia\"]\n      },\n      annotations: { readOnlyHint: true },\n      async execute({ dia }) {\n        return { dia, horario: horarios[dia] };\n      }\n    }, { signal: controle.signal }).catch((erro) => console.warn(\"WebMCP:\", erro));\n  } else {\n    document.getElementById(\"aviso-agente\").hidden = false;\n  }\n</script>"
+          "conteudo": "<section id=\"horarios\">\n  <h1>Horario de atención</h1>\n  <p>Lunes a viernes, 8h a 18h. Sábado, 8h a 12h. Domingo, cerrado.</p>\n</section>\n<p id=\"aviso-agente\" hidden>Este navegador no ofrece herramientas a agentes. La información de arriba vale igual.</p>\n<script>\n  const horarios = { semana: \"08:00-18:00\", sabado: \"08:00-12:00\", domingo: \"cerrado\" };\n  const controle = new AbortController(); // controle.abort() quita la herramienta\n  if (\"modelContext\" in document) {\n    document.modelContext.registerTool({\n      name: \"consultar_horarios\",\n      title: \"Consultar horario de atención\",\n      description: \"Devuelve el horario de atención de la tienda para el día solicitado. Solo lectura: no agenda nada.\",\n      inputSchema: {\n        type: \"object\",\n        properties: {\n          dia: { type: \"string\", enum: [\"semana\", \"sabado\", \"domingo\"], description: \"Día a consultar\" }\n        },\n        required: [\"dia\"]\n      },\n      annotations: { readOnlyHint: true },\n      async execute({ dia }) {\n        return { dia, horario: horarios[dia] };\n      }\n    }, { signal: controle.signal }).catch((erro) => console.warn(\"WebMCP:\", erro));\n  } else {\n    document.getElementById(\"aviso-agente\").hidden = false;\n  }\n</script>"
         },
         {
           "rot": "Encabezado para páginas SIN WebMCP",
@@ -141,7 +141,7 @@
         {
           "rot": "Comprobar",
           "icone": "check",
-          "conteudo": "grep -c \"registerTool(\" horarios.html\n# 1\n# publicada: o agente-ready detecta a ferramenta no código estático\npython3 agente-ready.py https://seusite.com/teste/horarios.html --saida saida/teste"
+          "conteudo": "grep -c \"registerTool(\" horarios.html\n# 1\n# publicada: el agente-ready detecta la herramienta en el código estático\npython3 agente-ready.py https://seusite.com/teste/horarios.html --saida saida/teste"
         }
       ],
       "saida": {

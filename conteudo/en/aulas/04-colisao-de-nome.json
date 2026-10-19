@@ -123,7 +123,7 @@
         {
           "rot": "catalogo/institucional/quem-somos.md",
           "icone": "arquivo",
-          "conteudo": "---\nslug: quem-somos\ntipo: institucional\ntitulo: O que é a <Marca Completa>\nresumo: <Marca Completa> é <o que é, para quem> desde <ano>. Não confundir com <homônimo>, que <o que o outro é>.\nstatus: revisado\nfonte: <URL ou documento que comprova>\nconfianca: alta\natualizado_em: dd/mm/aaaa\nrelacionados: [quem-e-fundador, servicos]\n---\n\n<Direct answer in 1 paragraph, with data only you have.>\n\n## PENDENTE\n- <what still needs confirming: does not go live>"
+          "conteudo": "---\nslug: quem-somos\ntipo: institucional\ntitulo: What <Full Brand Name> is\nresumo: <Full Brand Name> is <what it is, for whom> since <year>. Not to be confused with <namesake>, which <what the other is>.\nstatus: revisado\nfonte: <URL or document that proves it>\nconfianca: alta\natualizado_em: dd/mm/aaaa\nrelacionados: [quem-e-fundador, servicos]\n---\n\n<Direct answer in 1 paragraph, with data only you have.>\n\n## PENDENTE\n- <what still needs confirming: does not go live>"
         },
         {
           "rot": "JSON-LD · entity with @id and sameAs",

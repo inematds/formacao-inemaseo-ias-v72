@@ -23,7 +23,7 @@
 &lt;/section&gt;
 &lt;p id=&quot;aviso-agente&quot; hidden&gt;This browser does not offer tools to agents. The information above is just as valid.&lt;/p&gt;
 &lt;script&gt;
-  const horarios = { semana: &quot;08:00-18:00&quot;, sabado: &quot;08:00-12:00&quot;, domingo: &quot;fechado&quot; };
+  const horarios = { semana: &quot;08:00-18:00&quot;, sabado: &quot;08:00-12:00&quot;, domingo: &quot;closed&quot; };
   const controle = new AbortController(); // controle.abort() removes the tool
   if (&quot;modelContext&quot; in document) {
     document.modelContext.registerTool({
