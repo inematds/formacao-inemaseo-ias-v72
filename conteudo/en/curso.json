@@ -3,14 +3,14 @@
   "lang": "en",
   "url": "https://inematds.github.io/formacao-inemaseo-ias-v72/en/",
   "nome": "inemaSEO 4 — In the AIs: AEO, GEO, and sites used by agents",
-  "sub": "inemaSEO Program · course 4 of 6",
+  "sub": "inemaSEO Program · course 4 of 7",
   "volta": {
     "t": "inemaSEO Area",
     "href": "https://eventos.inema.pro/inemaseo/"
   },
   "lado_card": {
     "rot": "inemaSEO Program",
-    "t": "Course 4 of 6",
+    "t": "Course 4 of 7",
     "texto": "With AI measurement in place, course 5 puts agents in the terminal to do the repetitive work, always with a human gate.",
     "link": "Go to course 5",
     "href": "https://inematds.github.io/formacao-inemaseo-agentes-v72/"
@@ -18,7 +18,7 @@
   "rodape": "INEMA.CLUB · open and free content · INEMA Learning format v7.2 · <a href=\"https://eventos.inema.pro/inemaseo/\">eventos.inema.pro/inemaseo</a> · <a href=\"https://github.com/inematds/inemaseo-metodo\">inemaSEO method (MIT)</a> · <a href=\"https://github.com/inematds/inemaseo-sistemas\">inemaseo-sistemas (MIT)</a> · <a href=\"https://inema.club/\">inema.club</a>",
   "videos": {},
   "inicio": {
-    "kicker": "inemaSEO Program · course 4 of 6 · 8 lessons",
+    "kicker": "inemaSEO Program · course 4 of 7 · 8 lessons",
     "titulo": "In the AIs: AEO, GEO, and sites used by agents",
     "lead": "Getting cited by AIs doesn't call for a magic file. It calls for well-done SEO, content only you have, and honest measurement. In eight lessons you separate fundamentals from fads, read the official dashboards, measure citations by hand every month, fix your entity, check the bots in the log, and get your site ready for agents.",
     "cta": "Start with lesson 1",

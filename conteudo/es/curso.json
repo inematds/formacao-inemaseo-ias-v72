@@ -3,14 +3,14 @@
   "lang": "es",
   "url": "https://inematds.github.io/formacao-inemaseo-ias-v72/es/",
   "nome": "inemaSEO 4 — En las IAs: AEO, GEO y sitios usados por agentes",
-  "sub": "Formación inemaSEO · curso 4 de 6",
+  "sub": "Formación inemaSEO · curso 4 de 7",
   "volta": {
     "t": "Área inemaSEO",
     "href": "https://eventos.inema.pro/inemaseo/"
   },
   "lado_card": {
     "rot": "Formación inemaSEO",
-    "t": "Curso 4 de 6",
+    "t": "Curso 4 de 7",
     "texto": "Con la medición en las IAs ya en pie, el curso 5 pone agentes en la terminal para hacer lo repetitivo, siempre con compuerta humana.",
     "link": "Ir al curso 5",
     "href": "https://inematds.github.io/formacao-inemaseo-agentes-v72/"
@@ -18,7 +18,7 @@
   "rodape": "INEMA.CLUB · contenido abierto y gratuito · formato INEMA Learning v7.2 · <a href=\"https://eventos.inema.pro/inemaseo/\">eventos.inema.pro/inemaseo</a> · <a href=\"https://github.com/inematds/inemaseo-metodo\">método inemaSEO (MIT)</a> · <a href=\"https://github.com/inematds/inemaseo-sistemas\">inemaseo-sistemas (MIT)</a> · <a href=\"https://inema.club/\">inema.club</a>",
   "videos": {},
   "inicio": {
-    "kicker": "Formación inemaSEO · curso 4 de 6 · 8 clases",
+    "kicker": "Formación inemaSEO · curso 4 de 7 · 8 clases",
     "titulo": "En las IAs: AEO, GEO y sitios usados por agentes",
     "lead": "Que las IAs te citen no pide un archivo mágico: pide un buen SEO, contenido que solo tú tienes y una medición honesta. En ocho clases separas lo fundamental de lo que es moda, lees los paneles oficiales, mides las citas a mano cada mes, corriges tu entidad, revisas los robots en el log y preparas el sitio para los agentes.",
     "cta": "Empezar por la clase 1",
