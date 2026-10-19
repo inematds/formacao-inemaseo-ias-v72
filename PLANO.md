@@ -54,3 +54,4 @@ Somas: direto 2+2+2+2 = 8; desvio 1+1+2+2+2 = 8 (não passa). Máximo = 8.
 ## Resultado (19/10/2026)
 - PT: `validar.py` OK; `--links` 27 externos, único falho = curso 5 (irmão ainda não publicado); `conferir-tela.cjs` 9 páginas × 2 larguras OK, simconversa percorrida (máx. 8).
 - Checagens da formação: skool/rank #1/humaniz = 0; nome antigo da API = vazio; llms.txt só como opcional/opção errada; FAQPage só com "rich result acabou (07/05/2026)".
+- EN/ES: tradutor central (Sonnet 5.5, assinatura), 1027 textos por idioma, 0 sem tradução; validar --lang en/es OK (só curso 5 falha); conferir-tela 27 páginas × 2 OK. Publicado: PT/EN/ES 200.
